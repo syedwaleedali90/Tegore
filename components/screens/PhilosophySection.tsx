@@ -8,19 +8,19 @@ const slides = [
     id: 1,
     title: "A great teacher finds your blindspots",
     text: "Tegore identifies exactly where student understanding breaks down—then rebuilds it from the ground up at their pace.",
-    image: "/images/panda1.png",
+    image: "/slider1.svg",
   },
   {
     id: 2,
     title: "A great teacher motivates you",
     text: "Tegore learns what motivates each student, celebrates their progress, and adapts to their style—whether they need sass or patience.",
-    image: "/images/panda2.png",
+    image: "/slider2.svg",
   },
   {
     id: 3,
     title: "A great teacher challenges you",
     text: "Develops critical thinking and judgment through questioning and real-world problem-solving—teaching students the why, not just the how.",
-    image: "/images/panda3.png",
+    image: "/slider3.svg",
   },
 ];
 
@@ -58,17 +58,28 @@ export default function PhilosophySection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center w-full"
             >
-              <Image
-                src={slides[currentSlide].image}
-                alt="Mascot"
-                width={250}
-                height={250}
-              />
-              <button className="mt-4 bg-blue-500 text-white text-sm px-4 py-2 rounded">
-                See it in Action
-              </button>
+              <div className="customredSection">
+                <Image
+                  src="/basedon.svg"
+                  alt="Tegore mascot"
+                  width={220}
+                  height={220}
+                  priority
+                />
+              </div>
+              <div className="items-center flex flex-col md:items-center text-center md:text-left">
+                <Image
+                  src={slides[currentSlide].image}
+                  alt="Mascot"
+                  width={250}
+                  height={250}
+                />
+                <button className="mt-1 bg-blue-500 text-white text-sm px-4 py-2 rounded">
+                  See it in Action
+                </button>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -83,13 +94,13 @@ export default function PhilosophySection() {
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-sm italic mb-2 text-gray-500">
+              <p className="text-sm italic border-b border-black pb-1 mb-5 text-gray-500">
                 Tegore’s Philosophy
               </p>
-              <h2 className="text-5xl font-bold text-orange-600 leading-tight">
+              <h2 className="text-4xl md:text-7xl font-extrabold  leading-19 text-orange-600">
                 {slides[currentSlide].title}
               </h2>
-              <p className="mt-4 text-gray-700 text-lg">
+              <p className="text-gray-700 mt-6 mb-4">
                 {slides[currentSlide].text}
               </p>
             </motion.div>
@@ -105,9 +116,8 @@ export default function PhilosophySection() {
                     containerRef.current!.offsetTop + i * window.innerHeight;
                   window.scrollTo({ top: y, behavior: "smooth" });
                 }}
-                className={`w-3 h-3 rounded-full transition ${
-                  currentSlide === i ? "bg-gray-800" : "bg-gray-300"
-                }`}
+                className={`w-7 h-1 rounded-full transition-all duration-300 ${currentSlide === i ? "bg-orange-500" : "bg-gray-300 hover:bg-gray-400"
+                  }`}
               />
             ))}
           </div>

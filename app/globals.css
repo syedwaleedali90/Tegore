@@ -142,3 +142,48 @@
   top: 4px;
   z-index: -1;
 } */
+.customredSection {
+  height: 125px;
+  position: relative;
+  width: 100%;
+}
+
+.customredSection img {
+  color: transparent;
+  position: absolute;
+  /* top: 0; */
+  left: 10%;
+  bottom: -70px;
+  height: 100%;
+}
+
+.specifibtn {
+  position: relative;
+}
+
+.specifibtn::before {
+
+  background: #fff;
+  transform: rotate(45deg);
+  content: "";
+  height: 34.28571px;
+  width: 34.28571px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin: -17.14286px -17.14286px;
+}
+
+.specifibtn::after {
+  background: #fff;
+  transform: rotate(45deg);
+  content: "";
+  height: 34.28571px;
+  width: 34.28571px;
+  position: absolute;
+  top: 50%;
+  left:  0;
+  margin: -17.14286px -17.14286px;
+  /* position: absolute; */
+   
+}
