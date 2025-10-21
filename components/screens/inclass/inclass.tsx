@@ -8,7 +8,7 @@ export default function InClassSection() {
 
 
     return (
-        <section className="bg-white py-16">
+        <section className="bg-white py-2 md:py-16">
             <div className="px-6 grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 items-center">
                 <div>
                     <h2 className="
@@ -66,7 +66,7 @@ export default function InClassSection() {
                 {/* Image Section */}
                 <div className="flex justify-center md:justify-end">
                     <Image
-                        src="/insideimg.svg"
+                        src="/boy.svg"
                         alt="Unit illustration"
                         width={192} // base width (12rem = w-48)
                         height={192}

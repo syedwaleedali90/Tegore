@@ -47,7 +47,7 @@ function RightSection() {
 
 export default function PricingSection() {
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-2 md:py-16">
       <div className="px-6 grid md:grid-cols-2 gap-10 items-center">
         {/* LEFT SIDE */}
         <div>
