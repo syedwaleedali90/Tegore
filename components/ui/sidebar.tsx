@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, VariantProps } from "class-variance-authority";
-import { SidebarTriggerIcon } from "@/public/svg";
+// import { SidebarTriggerIcon } from "@/public/svg";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -249,7 +249,7 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
       }}
       {...props}
     >
-      <SidebarTriggerIcon />
+      {/* <SidebarTriggerIcon /> */}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

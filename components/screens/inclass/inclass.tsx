@@ -1,6 +1,5 @@
 // components/TestimonialSection.tsx
 
-import { Check } from "lucide-react"
 import Image from "next/image";
 
 export default function InClassSection() {
@@ -66,10 +65,13 @@ export default function InClassSection() {
 
                 {/* Image Section */}
                 <div className="flex justify-center md:justify-end">
-                    <img
-                        src="/boy.svg"
-                        alt="boy"
+                    <Image
+                        src="/insideimg.svg"
+                        alt="Unit illustration"
+                        width={192} // base width (12rem = w-48)
+                        height={192}
                         className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain"
+                        priority
                     />
                 </div>
             </div>
