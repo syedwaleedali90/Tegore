@@ -27,27 +27,24 @@ export default function PhilosophySection({ id }: { id: number }) {
   const slide = slides.find((s) => s.id === id);
   if (!slide) return null;
 
-  // Function to scroll to a given section by id
   const scrollToSection = (targetId: number) => {
     const target = document.getElementById(`philosophy-${targetId}`);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
+    if (target) target.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div
       id={`philosophy-${slide.id}`}
-      className="flex items-center justify-center h-screen w-full bg-white"
+      className="flex flex-col md:flex-row items-center justify-center h-auto md:h-screen w-full bg-white px-6 md:px-10 py-12 md:py-0"
     >
-      {/* LEFT SIDE */}
-      <div className="w-1/2 flex flex-col items-center justify-center">
-        <div className="customredSection mb-4">
+      {/* LEFT SIDE (Image) */}
+      <div className="w-full md:w-1/2 flex flex-col items-center justify-center mb-8 md:mb-0">
+        <div className="customredSection hidden md:block mb-4">
           <Image
             src="/basedon.svg"
             alt="Tegore mascot"
-            width={200}
-            height={200}
+            width={180}
+            height={180}
             priority
           />
         </div>
@@ -62,43 +59,59 @@ export default function PhilosophySection({ id }: { id: number }) {
           <Image
             src={slide.image}
             alt={`Slide ${slide.id}`}
-            width={250}
-            height={250}
+            width={120}          // default mobile size
+            height={120}
+            className="sm:w-[150px] sm:h-[150px] md:w-[250] md:h-[250]" // scale up
           />
-          <button className="mt-4 bg-blue-500 text-white text-sm px-4 py-2 rounded">
+
+          {/* Show this button only on desktop */}
+          <button className="hidden md:block mt-6 bg-blue-500 text-white text-sm px-5 py-2 rounded hover:bg-blue-600 transition">
             See it in Action
           </button>
         </motion.div>
       </div>
 
-      {/* RIGHT SIDE */}
-      <div className="w-1/2 px-10">
+      {/* RIGHT SIDE (Text) */}
+      <div className="w-full md:w-1/2 md:px-10">
         <motion.div
           key={slide.id + "-text"}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm italic border-b border-black pb-1 mb-5 text-gray-500">
+          <p className="text-sm italic border-b border-black pb-1 mb-5 text-gray-500 text-center md:text-left">
             Tegore’s Philosophy
           </p>
-          <h2 className="text-4xl md:text-7xl font-extrabold leading-[1.1] text-orange-600">
+
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-snug md:leading-[1.1] text-orange-600 text-center md:text-left">
             {slide.title}
           </h2>
-          <p className="text-gray-700 mt-6 mb-4">{slide.text}</p>
+
+          <p className="text-gray-700 mt-5 mb-6 text-center md:text-left text-base sm:text-lg">
+            {slide.text}
+          </p>
+
+          {/* 👇 Show button here only on mobile */}
+          <div className="block md:hidden mb-6 text-center">
+            <button className="bg-blue-500 text-white 
+    px-4 py-2 text-sm font-semibold 
+    sm:px-6 sm:py-3 sm:text-base
+    hover:bg-blue-600">
+              See it in Action
+            </button>
+          </div>
         </motion.div>
 
         {/* Navigation Dots */}
-        <div className="mt-10 flex space-x-3">
+        <div className="flex justify-center md:justify-start mt-4 md:mt-10 space-x-3">
           {slides.map((dot) => (
             <button
               key={dot.id}
               onClick={() => scrollToSection(dot.id)}
-              className={`w-7 h-1 rounded-full transition-all duration-300 ${
-                slide.id === dot.id
+              className={`w-7 h-1 rounded-full transition-all duration-300 ${slide.id === dot.id
                   ? "bg-orange-500"
                   : "bg-gray-300 hover:bg-gray-400"
-              }`}
+                }`}
             />
           ))}
         </div>

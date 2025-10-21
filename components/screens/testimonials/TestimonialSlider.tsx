@@ -55,7 +55,7 @@ export default function TestimonialSlider() {
           {testimonials.map((testimonial, i) => (
             <div
               key={testimonial.id}
-              className={`flex flex-col md:flex-row gap-4 items-center justify-center h-60 px-4 py-4 text-center border-3 border-orange-500 transition-opacity duration-700 ${
+              className={`flex flex-row sm:flex-row gap-4 items-center justify-center h-60 px-4 py-4 text-center border-3 border-orange-500 transition-opacity duration-700 ${
                 currentIndex === i ? "opacity-100" : "opacity-50"
               }`}
             >

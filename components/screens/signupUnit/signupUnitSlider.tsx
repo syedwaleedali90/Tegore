@@ -71,7 +71,7 @@ export default function SignupUnitSlider() {
       {/* Slider container */}
       <div className="relative">
         {/* Badge positioned absolutely over the slider */}
-        <div className="absolute -top-6 -left-22 transform -rotate-12 z-1 pointer-events-none">
+        <div className="hidden md:block absolute -top-6 -left-22 transform -rotate-12 z-1 pointer-events-none">
           <Image
             src="/Group1.svg"
             alt="Spots left badge"

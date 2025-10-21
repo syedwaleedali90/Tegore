@@ -21,10 +21,10 @@ export default function Page() {
 
 
         <motion.section
-          className="h-screen flex items-center justify-center snap-start"
+          className="customeHeight flex items-center justify-center snap-start"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.5 }}
           viewport={{ once: false, amount: 0.6 }}
         >
           <Screen0 />
@@ -32,10 +32,10 @@ export default function Page() {
         {[1, 2, 3, 4].map((id) => (
           <motion.section
             key={id}
-            className="h-screen flex items-center justify-center snap-start"
+            className="customeHeight hidden sm:flex flex items-center justify-center snap-start"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1.5 }}
             viewport={{ once: false, amount: 0.6 }}
           >
             <Layout id={id} />
@@ -48,10 +48,10 @@ export default function Page() {
 
         {/* Testimonial */}
         <motion.section
-          className="h-screen flex items-center justify-center snap-start"
+          className="customeHeight flex items-center justify-center snap-start"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.5 }}
           viewport={{ once: false, amount: 0.6 }}
         >
           <TestimonialSection />
@@ -59,10 +59,10 @@ export default function Page() {
 
         {/* Signup */}
         <motion.section
-          className="h-screen flex items-center justify-center snap-start"
+          className="customeHeight flex items-center justify-center snap-start"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.5 }}
           viewport={{ once: false, amount: 0.6 }}
         >
           <SignupUnitSection />
@@ -70,10 +70,10 @@ export default function Page() {
 
         {/* Pricing */}
         <motion.section
-          className="h-screen flex items-center justify-center snap-start"
+          className="customeHeight flex items-center justify-center snap-start"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.5 }}
           viewport={{ once: false, amount: 0.6 }}
         >
           <PricingSection />
@@ -83,10 +83,10 @@ export default function Page() {
        {[1, 2, 3].map((id) => (
           <motion.section
             key={id}
-            className="h-screen flex items-center justify-center snap-start"
+            className="customeHeight flex items-center justify-center snap-start"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1.5 }}
             viewport={{ once: false, amount: 0.6 }}
           >
             <PhilosophySection id={id} />
@@ -96,10 +96,10 @@ export default function Page() {
 
         {/* InClass */}
         <motion.section
-          className="h-screen flex items-center justify-center snap-start"
+          className="customeHeight flex items-center justify-center snap-start"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.5 }}
           viewport={{ once: false, amount: 0.6 }}
         >
           <InClassSection />
@@ -107,10 +107,10 @@ export default function Page() {
 
         {/* LearnWith */}
         <motion.section
-          className="h-screen flex items-center justify-center snap-start"
+          className="customeHeight flex items-center justify-center snap-start"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.5 }}
           viewport={{ once: false, amount: 0.6 }}
         >
           <LearnWith />
