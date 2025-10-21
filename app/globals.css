@@ -187,3 +187,6 @@
   /* position: absolute; */
    
 }
+.customeHeight{
+  min-height: calc(100vh - 70px );
+} 
