@@ -4,7 +4,7 @@ import TestimonialSlider from './TestimonialSlider'
 
 export default function TestimonialSection() {
     return (
-        <section className="bg-white py-16">
+        <section className="bg-white py-2 md:py-16">
             <div className="px-6 grid md:grid-cols-2 gap-12 items-center">
                 {/* Left Side (Heading + Text + Button) */}
                 <div className="flex flex-col">
