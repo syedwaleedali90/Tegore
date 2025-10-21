@@ -15,43 +15,43 @@ export default function LearnWith() {
 
     return (
         <section className="bg-white py-2 flex items-center justify-center flex-col">
-            <h2 className="text-4xl md:text-7xl font-extrabold text-center leading-19 text-orange-600">
+            <h2 className="  text-2xl sm:text-3xl md:text-6xl lg:text-7xl 
+    font-extrabold 
+    leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] 
+    text-orange-600
+    text-center md:text-left">
                 Learn with Tegore today
             </h2>
-            <div className=" grid md:grid-cols-2 mt-0 gap-15 items-center w-full">
-
-                <div className='pl-20 h-full'>
-                    <div className="w-full max-w-md h-full mx-auto">
-                        <div className="pt-0 pb-6 px-6 h-full">
-                            <div className="relative w-full h-[350px] flex items-center justify-center">
-                                <Image
-                                    src="/image33.svg"
-                                    alt="Tegore"
-                                    fill
-                                    className="object-contain"
-                                    priority
-                                />
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <div>
-
-                    <div className="flex flex-col space-y-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center w-full px-6 md:px-12 py-10 md:py-0">
+                {/* RIGHT (Buttons) — appears first on mobile */}
+                <div className="order-1 md:order-2 flex justify-center md:justify-start">
+                    <div className="flex flex-col space-y-3 sm:space-y-4">
                         {buttons.map((button, index) => (
-                         <div  key={index} className="relative">
-                            
-                            <button className="specifibtn mb-3 bg-blue-500 text-white px-6 py-1 w-[200px] hover:bg-blue-600 text-ms font-semibold">{button.label}</button>
-                         </div>
+                            <div key={index} className="relative">
+                                <button className="specifibtn bg-blue-500 text-white px-6 py-2 w-[180px] sm:w-[200px] hover:bg-blue-600 text-sm sm:text-base font-semibold rounded-md transition">
+                                    {button.label}
+                                </button>
+                            </div>
                         ))}
                     </div>
                 </div>
 
-
+                {/* LEFT (Image) — appears second on mobile */}
+                <div className="order-2 md:order-1 flex justify-center md:justify-end">
+                    <div className="w-full max-w-sm md:max-w-md mx-auto">
+                        <div className="relative w-full h-[250px] sm:h-[300px] md:h-[350px] flex items-center justify-center">
+                            <Image
+                                src="/image33.svg"
+                                alt="Tegore"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </section>
     )
 }
