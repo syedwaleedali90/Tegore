@@ -14,11 +14,11 @@ export default function LearnWith() {
     ];
 
     return (
-        <section className="bg-white py-2">
+        <section className="bg-white py-2 flex items-center justify-center flex-col">
             <h2 className="text-4xl md:text-7xl font-extrabold text-center leading-19 text-orange-600">
                 Learn with Tegore today
             </h2>
-            <div className=" grid md:grid-cols-2 mt-0 gap-15 items-center">
+            <div className=" grid md:grid-cols-2 mt-0 gap-15 items-center w-full">
 
                 <div className='pl-20 h-full'>
                     <div className="w-full max-w-md h-full mx-auto">
