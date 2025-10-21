@@ -1,7 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const slides = [
   {
@@ -29,102 +28,54 @@ const slides = [
   },
 ];
 
-export default function InteractiveSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+export default function Layout({ id }: { id: number }) {
+  const slide = slides.find((s) => s.id === id);
 
-  // Handle scroll updates
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const scrollY = window.scrollY - containerRef.current.offsetTop;
-      const screenHeight = window.innerHeight;
-      const index = Math.min(
-        slides.length - 1,
-        Math.max(0, Math.floor(scrollY / screenHeight))
-      );
-      setActiveIndex(index);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  if (!slide) return null;
 
   return (
-    <section ref={containerRef} className="relative h-[400vh] bg-white">
-      {/* Sticky Container */}
-      <div className="sticky top-0 flex h-screen items-center justify-center">
-        {/* LEFT SIDE */}
-        <div className="w-1/2 flex flex-col items-center justify-center">
-          <Image
-            src="/panda.svg"
-            alt="Tegore Mascot"
-            width={180}
-            height={180}
-            priority
-          />
+    <div  key={id} className="flex items-center justify-center h-screen w-full bg-white">
+      {/* LEFT SIDE */}
+      <div className="w-1/2 flex flex-col items-center justify-center">
+        <Image
+          src="/panda.svg"
+          alt="Tegore Mascot"
+          width={180}
+          height={180}
+          priority
+        />
 
-          <div className="mt-6 relative min-h-[80px] boxWidth text-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="border border-2 border-orange-500 rounded-sm px-4 py-3 text-md font-semibold text-gray-800 bg-white shadow"
-              >
-                {slides[activeIndex].message}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* RIGHT SIDE */}
-        <div className="w-1/2 flex flex-col items-center justify-center px-6">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={slides[activeIndex].id}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -40 }}
-              transition={{ duration: 0.6 }}
-              className="w-full flex items-center justify-center"
-            >
-              <div className="relative w-[80%] aspect-square">
-                <Image
-                  src={slides[activeIndex].image}
-                  alt="Slide"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation Dots */}
-          {/* <div className="mt-10 flex space-x-3">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  if (!containerRef.current) return;
-                  const y =
-                    containerRef.current.offsetTop + i * window.innerHeight;
-                  window.scrollTo({ top: y, behavior: "smooth" });
-                }}
-                className={`w-7 h-1 rounded-full transition-all duration-300 ${
-                  activeIndex === i
-                    ? "bg-orange-500"
-                    : "bg-gray-300 hover:bg-gray-400"
-                }`}
-              />
-            ))}
-          </div> */}
-        </div>
+        <motion.div
+          key={slide.id}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="mt-6 border border-orange-500 rounded-md px-6 py-4 text-md font-semibold text-gray-800 bg-white shadow-md text-center max-w-sm"
+        >
+          {slide.message}
+        </motion.div>
       </div>
-    </section>
+
+      {/* RIGHT SIDE */}
+      <div className="w-1/2 flex flex-col items-center justify-center px-8">
+        <motion.div
+          key={slide.image}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full flex items-center justify-center"
+        >
+          <div className="relative w-[70%] aspect-square">
+            <Image
+              src={slide.image}
+              alt={`Slide ${slide.id}`}
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </motion.div>
+      </div>
+    </div>
   );
 }

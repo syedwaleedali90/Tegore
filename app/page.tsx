@@ -1,3 +1,4 @@
+"use client";
 import Header from "@/components/header";
 import Layout from "@/components/Layout";
 import InClassSection from "@/components/screens/inclass/inclass";
@@ -7,39 +8,113 @@ import PricingSection from "@/components/screens/pricingSection/pricingSection";
 import Screen0 from "@/components/screens/screen0";
 import SignupUnitSection from "@/components/screens/signupUnit/signupUnitSection";
 import TestimonialSection from "@/components/screens/testimonials/TestimonialSection";
-import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-white">
       <Header />
 
+      {/* Screen 0 */}
+
       <div className="px-6 pb-6 max-w-7xl mx-auto">
-        <div className="flex items-center justify-center customeHeight">
+
+
+        <motion.section
+          className="h-screen flex items-center justify-center snap-start"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.6 }}
+        >
           <Screen0 />
-        </div>
-        <Layout />
-        <div className="flex items-center justify-center customeHeight">
+        </motion.section>
+        {[1, 2, 3, 4].map((id) => (
+          <motion.section
+            key={id}
+            className="h-screen flex items-center justify-center snap-start"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: false, amount: 0.6 }}
+          >
+            <Layout id={id} />
+          </motion.section>
+        ))}
+
+
+        {/* Layout section (scrollable internally) */}
+
+
+        {/* Testimonial */}
+        <motion.section
+          className="h-screen flex items-center justify-center snap-start"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.6 }}
+        >
           <TestimonialSection />
-        </div>
-        <div className="flex items-center justify-center customeHeight">
+        </motion.section>
+
+        {/* Signup */}
+        <motion.section
+          className="h-screen flex items-center justify-center snap-start"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.6 }}
+        >
           <SignupUnitSection />
-        </div>
-        <div className="flex items-center justify-center customeHeight">
+        </motion.section>
+
+        {/* Pricing */}
+        <motion.section
+          className="h-screen flex items-center justify-center snap-start"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.6 }}
+        >
           <PricingSection />
-        </div>
-        <PhilosophySection />
-        <div className="flex items-center justify-center customeHeight">
+        </motion.section>
+
+        {/* Philosophy (scrolls internally) */}
+       {[1, 2, 3].map((id) => (
+          <motion.section
+            key={id}
+            className="h-screen flex items-center justify-center snap-start"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: false, amount: 0.6 }}
+          >
+            <PhilosophySection id={id} />
+          </motion.section>
+        ))}
+
+
+        {/* InClass */}
+        <motion.section
+          className="h-screen flex items-center justify-center snap-start"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.6 }}
+        >
           <InClassSection />
-        </div>
-      </div>
-    
+        </motion.section>
 
-
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-center customeHeight">
+        {/* LearnWith */}
+        <motion.section
+          className="h-screen flex items-center justify-center snap-start"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.6 }}
+        >
           <LearnWith />
-        </div>
+        </motion.section>
       </div>
     </div>
   );
