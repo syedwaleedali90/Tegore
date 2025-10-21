@@ -60,7 +60,7 @@ export default function TestimonialSlider() {
               }`}
             >
               <div className="max-w-sm">
-                <p className="text-gray-700 mb-4">"{testimonial.text}"</p>
+                <p className="text-gray-700 mb-4">{`"${testimonial.text}"`}</p>
                 <p className="font-semibold">{testimonial.name}</p>
                 <p className="text-sm text-gray-500">{testimonial.grade}</p>
               </div>
