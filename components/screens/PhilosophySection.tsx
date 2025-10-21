@@ -1,7 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const slides = [
   {
@@ -24,105 +23,86 @@ const slides = [
   },
 ];
 
-export default function PhilosophySection() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+export default function PhilosophySection({ id }: { id: number }) {
+  const slide = slides.find((s) => s.id === id);
+  if (!slide) return null;
 
-  // Scroll handler to change slides
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const sectionTop = containerRef.current.offsetTop;
-      const scrollY = window.scrollY - sectionTop;
-      const height = window.innerHeight;
-      const index = Math.min(
-        slides.length - 1,
-        Math.max(0, Math.floor(scrollY / height))
-      );
-      setCurrentSlide(index);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Function to scroll to a given section by id
+  const scrollToSection = (targetId: number) => {
+    const target = document.getElementById(`philosophy-${targetId}`);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <section ref={containerRef} className="relative h-[400vh]">
-      {/* Sticky container */}
-      <div className="sticky top-0 flex h-screen items-center justify-center bg-white">
-        {/* Left Side */}
-        <div className="w-1/2 flex flex-col items-center justify-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={slides[currentSlide].id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-col items-center w-full"
-            >
-              <div className="customredSection">
-                <Image
-                  src="/basedon.svg"
-                  alt="Tegore mascot"
-                  width={220}
-                  height={220}
-                  priority
-                />
-              </div>
-              <div className="items-center flex flex-col md:items-center text-center md:text-left">
-                <Image
-                  src={slides[currentSlide].image}
-                  alt="Mascot"
-                  width={250}
-                  height={250}
-                />
-                <button className="mt-1 bg-blue-500 text-white text-sm px-4 py-2 rounded">
-                  See it in Action
-                </button>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+    <div
+      id={`philosophy-${slide.id}`}
+      className="flex items-center justify-center h-screen w-full bg-white"
+    >
+      {/* LEFT SIDE */}
+      <div className="w-1/2 flex flex-col items-center justify-center">
+        <div className="customredSection mb-4">
+          <Image
+            src="/basedon.svg"
+            alt="Tegore mascot"
+            width={200}
+            height={200}
+            priority
+          />
         </div>
 
-        {/* Right Side */}
-        <div className="w-1/2 px-10">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={slides[currentSlide].id + "-text"}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 0.6 }}
-            >
-              <p className="text-sm italic border-b border-black pb-1 mb-5 text-gray-500">
-                Tegore’s Philosophy
-              </p>
-              <h2 className="text-4xl md:text-7xl font-extrabold  leading-19 text-orange-600">
-                {slides[currentSlide].title}
-              </h2>
-              <p className="text-gray-700 mt-6 mb-4">
-                {slides[currentSlide].text}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+        <motion.div
+          key={slide.id}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="flex flex-col items-center text-center"
+        >
+          <Image
+            src={slide.image}
+            alt={`Slide ${slide.id}`}
+            width={250}
+            height={250}
+          />
+          <button className="mt-4 bg-blue-500 text-white text-sm px-4 py-2 rounded">
+            See it in Action
+          </button>
+        </motion.div>
+      </div>
 
-          {/* Navigation Dots */}
-          <div className="mt-10 flex space-x-3">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  const y =
-                    containerRef.current!.offsetTop + i * window.innerHeight;
-                  window.scrollTo({ top: y, behavior: "smooth" });
-                }}
-                className={`w-7 h-1 rounded-full transition-all duration-300 ${currentSlide === i ? "bg-orange-500" : "bg-gray-300 hover:bg-gray-400"
-                  }`}
-              />
-            ))}
-          </div>
+      {/* RIGHT SIDE */}
+      <div className="w-1/2 px-10">
+        <motion.div
+          key={slide.id + "-text"}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-sm italic border-b border-black pb-1 mb-5 text-gray-500">
+            Tegore’s Philosophy
+          </p>
+          <h2 className="text-4xl md:text-7xl font-extrabold leading-[1.1] text-orange-600">
+            {slide.title}
+          </h2>
+          <p className="text-gray-700 mt-6 mb-4">{slide.text}</p>
+        </motion.div>
+
+        {/* Navigation Dots */}
+        <div className="mt-10 flex space-x-3">
+          {slides.map((dot) => (
+            <button
+              key={dot.id}
+              onClick={() => scrollToSection(dot.id)}
+              className={`w-7 h-1 rounded-full transition-all duration-300 ${
+                slide.id === dot.id
+                  ? "bg-orange-500"
+                  : "bg-gray-300 hover:bg-gray-400"
+              }`}
+            />
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
