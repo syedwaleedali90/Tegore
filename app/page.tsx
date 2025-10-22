@@ -3,6 +3,7 @@ import Header from "@/components/header";
 import Layout from "@/components/Layout";
 import InClassSection from "@/components/screens/inclass/inclass";
 import LearnWith from "@/components/screens/learnWith/learnWith";
+import MobileAppComing from "@/components/screens/mobileAppComing/mobileAppComing";
 import PhilosophySection from "@/components/screens/PhilosophySection";
 import PricingSection from "@/components/screens/pricingSection/pricingSection";
 import Screen0 from "@/components/screens/screen0";
@@ -114,6 +115,15 @@ export default function Page() {
           viewport={{ once: false, amount: 0.6 }}
         >
           <LearnWith />
+        </motion.section>
+        <motion.section
+          className="customeHeight pb-4 flex items-center justify-center snap-start block md:hidden"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          viewport={{ once: false, amount: 0.6 }}
+        >
+          <MobileAppComing />
         </motion.section>
       </div>
     </div>

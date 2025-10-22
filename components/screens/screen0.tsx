@@ -19,11 +19,11 @@ export default function Screen0() {
                     <Image
                         src="/panda.svg"
                         alt="Tegore mascot"
-                        width={120}          // default mobile size
-                        height={120}
-                        className="sm:w-[150px] sm:h-[150px] md:w-[180px] md:h-[180px]" // scale up
+                        width={150}          // default mobile size
+                        height={150}
+                        className="sm:w-[150px] sm:h-[150px] md:w-[220px] md:h-[220px]" // scale up
                     />
-                    <div className="mt-6 border hidden md:block   border-2 boxWidth border-orange-500 rounded-sm px-4 py-3 text-md font-semibold text-black-700">
+                    <div className="mt-6 border hidden md:block   border-3 boxWidth border-orange-500 rounded-sm px-4 py-3 text-md font-bold text-black-700">
                         Hey there! I’m Tegore - scroll down to begin the experience
                     </div>
                 </div>
@@ -31,12 +31,12 @@ export default function Screen0() {
 
             <div className=" flex-1 flex flex-col items-center md:items-start gap-3 sm:gap-4 md:gap-6">
                 <div className="flex items-center gap-2 sm:mt-2  md:mt-0">
-                    <span className="text-xs text-gray-700 flex-inline items-center flex rounded-lg btngray px-4 py-2">Backed by <span className="w-6 items-center flex justify-center mx-1 h-6  bg-orange-600 text-white">Y </span> Combinator</span>
+                    <span className="text-xs text-gray-700 flex-inline items-center flex rounded-lg btngray px-4 py-1">Backed by <span className="w-3 items-center flex justify-center mx-1 h-3 pt-1  bg-orange-600 text-white" style={{fontSize:'11px'}}>Y </span> Combinator</span>
                 </div>
 
                 <h2
                     className="
-    text-2xl sm:text-3xl md:text-6xl lg:text-7xl 
+    text-3xl sm:text-4xl md:text-6xl lg:text-7xl 
     font-extrabold 
     leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] 
     text-gray-900
@@ -48,7 +48,7 @@ export default function Screen0() {
 
                 <button className="  bg-blue-500 text-white 
     px-4 py-2 text-sm font-semibold 
-    sm:px-6 sm:py-3 sm:text-base
+    sm:px-6 sm:py-2 sm:text-base
     hover:bg-blue-600">
                     Start Learning
                 </button>

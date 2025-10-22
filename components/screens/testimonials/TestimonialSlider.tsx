@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 type Testimonial = {
   id: number;
   text: string;
@@ -42,37 +42,38 @@ export default function TestimonialSlider() {
   // 🔥 Move per-slide based on how many total slides exist
   const movePercent = 100 / testimonials.length;
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  //   }, 4000);
+  //   return () => clearInterval(interval);
+  // }, [testimonials.length]);
+
   return (
     <div className="w-full">
       {/* Slider container */}
-      <div className="overflow-hidden h-60 relative">
-        <div
-          className="flex flex-col transition-transform duration-700 ease-in-out"
-          style={{
-            transform: `translateY(-${currentIndex * movePercent}%)`,
-          }}
-        >
-          {testimonials.map((testimonial, i) => (
-            <div
-              key={testimonial.id}
-              className={`flex flex-row sm:flex-row gap-4 items-center justify-center h-60 px-4 py-4 text-center border-3 border-orange-500 transition-opacity duration-700 ${
-                currentIndex === i ? "opacity-100" : "opacity-50"
-              }`}
-            >
-              <div className="max-w-sm">
-                <p className="text-gray-700 mb-4">{`"${testimonial.text}"`}</p>
-                <p className="font-semibold">{testimonial.name}</p>
-                <p className="text-sm text-gray-500">{testimonial.grade}</p>
-              </div>
-
-              <img
-                src={testimonial.imageUrl}
-                alt={testimonial.name}
-                className="w-30 h-30 object-fit"
-              />
+      <div className="overflow-hidden relative flex items-center justify-center h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={testimonials[currentIndex].id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0 flex flex-col sm:flex-row gap-4 items-center justify-center px-6 text-center border-2 border-orange-500 rounded-lg"
+          >
+            <div className="max-w-sm">
+              <p className="text-gray-700 mb-4 text-lg changeFontMono">{`"${testimonials[currentIndex].text}"`}</p>
+              <p className="text-md font-semibold changeFontMono">{testimonials[currentIndex].name}</p>
+              <p className="text-md text-gray-500 changeFontMono">{testimonials[currentIndex].grade}</p>
             </div>
-          ))}
-        </div>
+            <img
+              src={testimonials[currentIndex].imageUrl}
+              alt={testimonials[currentIndex].name}
+              className="w-20 h-20 sm:w-24 sm:h-24 object-contain"
+            />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Dot navigation */}
@@ -80,11 +81,10 @@ export default function TestimonialSlider() {
         {testimonials.map((_, index) => (
           <button
             key={index}
-            className={`w-7 h-1 rounded-full transition-all duration-300 ${
-              currentIndex === index
-                ? "bg-orange-500 "
-                : "bg-gray-300 hover:bg-gray-400"
-            }`}
+            className={`w-7 h-1 rounded-full transition-all duration-300 ${currentIndex === index
+              ? "bg-orange-500 "
+              : "bg-gray-300 hover:bg-gray-400"
+              }`}
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
           />

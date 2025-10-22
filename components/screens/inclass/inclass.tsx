@@ -8,24 +8,24 @@ export default function InClassSection() {
 
 
     return (
-        <section className="bg-white py-2 md:py-16">
+        <section className="bg-white pb-16 pt-2 md:pt-16">
             <div className="px-6 grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 items-center">
                 <div>
                     <h2 className="
-    text-2xl sm:text-3xl md:text-6xl lg:text-7xl 
+    text-3xl sm:text-4xl md:text-6xl lg:text-7xl 
     font-extrabold 
     leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] 
     text-orange-500
     text-left
   ">
-                        Meet every <br className="hidden md:block" /> student’s <br /> needs in-class
+                        Meet every <br className="hidden md:block" /> student’s <br className="hidden md:block" /> needs in-class
                     </h2>
-                    <p className="text-gray-700 mt-6 mb-4">
+                    <p className="text-gray-700 mt-3 mb-5 changeFont text-sm sm:text-base md:text-lg lg:text-xl">
                         Tegore gives teachers specific insights into each student’s gaps and a class-level overview so they know where to spend their energy.
                     </p>
                     <button className=" bg-blue-500 text-white 
     px-4 py-2 text-sm font-semibold 
-    sm:px-6 sm:py-3 sm:text-base
+    sm:px-6 sm:py-2 sm:text-base
     hover:bg-blue-600">
                         See it in Action
                     </button>
@@ -48,17 +48,17 @@ export default function InClassSection() {
                 </div>
             </div>
             <div
-                className={`flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 md:gap-10 py-4 text-center md:text-left transition-opacity duration-700`}
+                className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 md:gap-10 py-4 text-center md:text-left transition-opacity duration-700`}
             >
                 {/* Text Section */}
-                <div className="flex-1 border-t border-gray-300 pt-6 px-4 md:px-0">
-                    <p className="text-gray-700 mb-4 text-base sm:text-lg leading-relaxed">
+                <div className="flex-1 border-t border-gray-300 pt-6 px-4 md:px-0 changeFontMono">
+                    <p className="text-gray-700 mb-4 text-base text-center sm:text-lg leading-relaxed">
                         “It felt like a dream... like having another teacher in my classroom.”
                     </p>
-                    <p className="font-semibold text-gray-900 text-base sm:text-lg">
+                    <p className="font-semibold text-gray-900 text-base  text-center sm:text-lg">
                         Mr. Peter Lu
                     </p>
-                    <p className="text-gray-500 text-sm sm:text-base">
+                    <p className="text-gray-500 text-sm sm:text-base  text-center">
                         Math Teacher at Hilltop High School | Stanford Alum
                     </p>
                 </div>
@@ -70,7 +70,7 @@ export default function InClassSection() {
                         alt="Unit illustration"
                         width={192} // base width (12rem = w-48)
                         height={192}
-                        className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain"
+                        className="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 object-contain"
                         priority
                     />
                 </div>
