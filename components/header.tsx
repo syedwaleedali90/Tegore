@@ -31,6 +31,7 @@ export default function Header() {
         <div className="relative">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
+            style={{lineHeight:'17px'}}
             className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 font-semibold  hover:bg-blue-600 text-xs sm:text-sm"
           >
             Get Started

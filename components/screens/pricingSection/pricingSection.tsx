@@ -13,12 +13,12 @@ import { Check } from "lucide-react";
 function RightSection() {
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="relative">
+      <div className="relative ">
         <div className="overflow-hidden">
           <div className="flex transition-transform duration-700 ease-in-out">
-            <div className="min-w-full px-0 md:px-4">
+            <div className="min-w-full  px-0 md:px-4">
               <div className="relative bg-white rounded-lg border-4 border-orange-500 shadow-lg overflow-hidden">
-                <div className="pt-6 pb-6 px-6">
+                <div className="pt-6 pb-6 px-6 bgchange">
                   <h2 className="text-2xl font-bold text-gray-900 mb-4">
                     Tegore
                   </h2>
@@ -32,7 +32,7 @@ function RightSection() {
                     ))}
                   </div>
 
-                  <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 transition-colors duration-200">
+                  <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 transition-colors duration-200">
                     $50/month
                   </button>
                 </div>
@@ -47,7 +47,7 @@ function RightSection() {
 
 export default function PricingSection() {
   return (
-    <section className="bg-white py-2 md:py-16">
+    <section className="bg-white pb-16 pt-2 md:pt-16">
       <div className="px-6 grid md:grid-cols-2 gap-10 items-center">
         {/* LEFT SIDE */}
         <div>
@@ -61,13 +61,13 @@ export default function PricingSection() {
             <RightSection />
           </div>
 
-          <p className="text-gray-700 mt-6 mb-4">
+          <p className="text-gray-700 mt-3 mb-5 changeFont text-sm sm:text-base md:text-lg lg:text-xl">
             Our mission is to make Tegore accessible to every family — and we’re
             just getting started. We offer a full money-back guarantee anytime
             within the month.
           </p>
 
-          <button className="bg-blue-500 text-white px-4 py-2 text-sm font-semibold sm:px-6 sm:py-3 sm:text-base hover:bg-blue-600 w-fit">
+          <button className="bg-blue-500 text-white px-4 py-2 text-sm font-semibold sm:px-6 sm:py-2 sm:text-base hover:bg-blue-600 w-fit">
             Sign up for Algebra 1
           </button>
         </div>

@@ -52,6 +52,114 @@ const units: Unit[] = [
     ],
     buttonText: "Join Statistics!",
   },
+  {
+    id: 4,
+    spotsLeft: 3,
+    title: "Unit 1: Algebra",
+    subtitle: "Foundations",
+    learningPoints: [
+      "Learn about variables",
+      "Solve equations",
+      "Learn the 'why'",
+    ],
+    buttonText: "Join Algebra 1!",
+  },
+  {
+    id: 5,
+    spotsLeft: 5,
+    title: "Unit 2: Geometry",
+    subtitle: "Basics",
+    learningPoints: [
+      "Understand shapes",
+      "Calculate angles",
+      "Master theorems",
+    ],
+    buttonText: "Join Geometry!",
+  },
+  {
+    id: 6,
+    spotsLeft: 2,
+    title: "Unit 3: Statistics",
+    subtitle: "& Probability",
+    learningPoints: [
+      "Analyze data sets",
+      "Calculate probability",
+      "Interpret graphs",
+    ],
+    buttonText: "Join Statistics!",
+  },
+  {
+    id: 7,
+    spotsLeft: 3,
+    title: "Unit 1: Algebra",
+    subtitle: "Foundations",
+    learningPoints: [
+      "Learn about variables",
+      "Solve equations",
+      "Learn the 'why'",
+    ],
+    buttonText: "Join Algebra 1!",
+  },
+  {
+    id: 8,
+    spotsLeft: 5,
+    title: "Unit 2: Geometry",
+    subtitle: "Basics",
+    learningPoints: [
+      "Understand shapes",
+      "Calculate angles",
+      "Master theorems",
+    ],
+    buttonText: "Join Geometry!",
+  },
+  {
+    id: 9,
+    spotsLeft: 2,
+    title: "Unit 3: Statistics",
+    subtitle: "& Probability",
+    learningPoints: [
+      "Analyze data sets",
+      "Calculate probability",
+      "Interpret graphs",
+    ],
+    buttonText: "Join Statistics!",
+  },
+  {
+    id: 10,
+    spotsLeft: 3,
+    title: "Unit 1: Algebra",
+    subtitle: "Foundations",
+    learningPoints: [
+      "Learn about variables",
+      "Solve equations",
+      "Learn the 'why'",
+    ],
+    buttonText: "Join Algebra 1!",
+  },
+  {
+    id: 11,
+    spotsLeft: 5,
+    title: "Unit 2: Geometry",
+    subtitle: "Basics",
+    learningPoints: [
+      "Understand shapes",
+      "Calculate angles",
+      "Master theorems",
+    ],
+    buttonText: "Join Geometry!",
+  },
+  {
+    id: 12,
+    spotsLeft: 2,
+    title: "Unit 3: Statistics",
+    subtitle: "& Probability",
+    learningPoints: [
+      "Analyze data sets",
+      "Calculate probability",
+      "Interpret graphs",
+    ],
+    buttonText: "Join Statistics!",
+  },
 ];
 
 export default function SignupUnitSlider() {
@@ -90,10 +198,10 @@ export default function SignupUnitSlider() {
               transition={{ duration: 0.5, ease: "easeInOut" }}
               className="px-4"
             >
-              <div className="relative rounded-lg border-4 border-orange-500 shadow-lg overflow-hidden bg-white">
-                <div className="pt-2 md:pt-6 pb-2 md:pb-6 px-6">
+              <div className="relative rounded-lg border-4 border-orange-500 shadow-lg overflow-hidden bgchange">
+                <div className="pt-2 md:pt-2 pb-2 md:pb-6 px-6">
                   {/* Icon/Image Section */}
-                  <div className="relative w-full mb-6 aspect-[4/3] sm:aspect-[16/9] md:h-[220px] lg:h-[260px]">
+                  <div className="relative w-full mb-2 aspect-[4/3] sm:aspect-[16/9] md:h-[160px] lg:h-[180px]">
                     <Image
                       src="/insideimg.svg"
                       alt="Unit illustration"
@@ -116,13 +224,13 @@ export default function SignupUnitSlider() {
                     {units[currentIndex].learningPoints.map((point, index) => (
                       <div key={index} className="flex items-start gap-2">
                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{point}</span>
+                        <span className="text-gray-700 changeFontMono">{point}</span>
                       </div>
                     ))}
                   </div>
 
                   {/* CTA Button */}
-                  <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 transition-colors duration-200">
+                  <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 transition-colors duration-200">
                     {units[currentIndex].buttonText}
                   </button>
                 </div>
@@ -132,7 +240,7 @@ export default function SignupUnitSlider() {
         </div>
 
         {/* Pagination */}
-        <div className="flex justify-center items-center gap-3 mt-3">
+        <div className="flex pl-4 items-center gap-3 mt-3">
           <button
             onClick={goToPrevious}
             className="text-black hover:text-orange-600 font-medium text-xl"

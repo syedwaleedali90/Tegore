@@ -4,7 +4,7 @@ import TestimonialSlider from './TestimonialSlider'
 
 export default function TestimonialSection() {
     return (
-        <section className="bg-white py-2 md:py-16">
+        <section className="bg-white pb-16 pt-2 md:pt-16">
             <div className="px-6 grid md:grid-cols-2 gap-12 items-center">
                 {/* Left Side (Heading + Text + Button) */}
                 <div className="flex flex-col">
@@ -14,17 +14,17 @@ export default function TestimonialSection() {
                     </h2>
 
                     {/* 👇 Slider (Visible only on mobile) */}
-                    <div className="block md:hidden mt-8">
+                    <div className="block md:hidden mt-4">
                         <TestimonialSlider />
                     </div>
 
                     {/* Content */}
-                    <p className="text-gray-700 mt-6 mb-4">
+                    <p className="text-gray-700 mt-3 mb-5 changeFont text-sm sm:text-base md:text-lg lg:text-xl">
                         From 4th graders just starting fractions to high schoolers tackling algebra, students say Tegore makes them feel confident, less stressed, and even excited about math.
                     </p>
 
                     {/* Button */}
-                    <button className="bg-blue-500 text-white px-4 py-2 text-sm font-semibold sm:px-6 sm:py-3 sm:text-base hover:bg-blue-600 w-fit">
+                    <button className="bg-blue-500 text-white px-4 py-2 text-sm font-semibold sm:px-6 sm:py-2 sm:text-base hover:bg-blue-600 w-fit">
                         See it in Action
                     </button>
                 </div>
