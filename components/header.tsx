@@ -2,9 +2,17 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+
+  const router = useRouter();
+
+  const handleLogin = () => {
+    router.push("/home");
+  };
 
   return (
     <header className="flex sticky top-0 bg-white z-[11] items-center justify-between px-4 py-3 md:px-6">
@@ -24,14 +32,16 @@ export default function Header() {
 
       {/* Right links */}
       <div className="flex items-center gap-4 text-sm">
-        <button className="hidden md:block font-semibold text-gray-700 hover:underline">
+        <button
+          onClick={() => handleLogin()}
+          className="hidden md:block font-semibold text-gray-700 hover:underline">
           Log In
         </button>
 
         <div className="relative">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            style={{lineHeight:'17px'}}
+            style={{ lineHeight: '17px' }}
             className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 font-semibold  hover:bg-blue-600 text-xs sm:text-sm"
           >
             Get Started
