@@ -80,7 +80,7 @@ export default function HomeSection() {
 
     return (
         <div className="relative customheightHome">
-            <div className="fixed h-[40%] z-1 bottom-[20%] left-8">
+            <div className="fixed h-[40%] z-1 bottom-[25%] left-8">
                 <div className="relative w-full h-full">
                     <Image
                         src="/Tower1.png"
@@ -91,7 +91,7 @@ export default function HomeSection() {
                     />
                 </div>
             </div>
-            <div className="fixed h-[40%] bottom-[20%] z-1 right-8">
+            <div className="fixed h-[40%] bottom-[25%] z-1 right-8">
                 <div className="relative w-full h-full">
 
                     <Image
