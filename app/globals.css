@@ -204,4 +204,10 @@
 }
 .bgchange{
   background: #F9F9F9;
+} 
+.customheightHome{
+  min-height: calc(100vh - 60px);
+}
+.sidebarBg{
+  background: #ededed;
 }
