@@ -1,6 +1,7 @@
 // components/TestimonialSection.tsx
 
 import Image from "next/image";
+import InClassSlider from "./inclassSlider";
 
 export default function InClassSection() {
 
@@ -12,7 +13,7 @@ export default function InClassSection() {
             <div className="px-6 grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 items-center">
                 <div>
                     <h2 className="
-    text-3xl sm:text-4xl md:text-6xl lg:text-7xl 
+    text-4xl sm:text-4xl md:text-6xl lg:text-7xl 
     font-extrabold 
     leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] 
     text-orange-500
@@ -47,34 +48,9 @@ export default function InClassSection() {
                     </div>
                 </div>
             </div>
-            <div
-                className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 md:gap-10 py-4 text-center md:text-left transition-opacity duration-700`}
-            >
-                {/* Text Section */}
-                <div className="flex-1 border-t border-gray-300 pt-6 px-4 md:px-0 changeFontMono">
-                    <p className="text-gray-700 mb-4 text-base text-center sm:text-lg leading-relaxed">
-                        “It felt like a dream... like having another teacher in my classroom.”
-                    </p>
-                    <p className="font-semibold text-gray-900 text-base  text-center sm:text-lg">
-                        Mr. Peter Lu
-                    </p>
-                    <p className="text-gray-500 text-sm sm:text-base  text-center">
-                        Math Teacher at Hilltop High School | Stanford Alum
-                    </p>
-                </div>
 
-                {/* Image Section */}
-                <div className="flex justify-center md:justify-end">
-                    <Image
-                        src="/boy.svg"
-                        alt="Unit illustration"
-                        width={192} // base width (12rem = w-48)
-                        height={192}
-                        className="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 object-contain"
-                        priority
-                    />
-                </div>
-            </div>
+
+            <InClassSlider />
 
         </section>
     )

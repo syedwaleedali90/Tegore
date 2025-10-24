@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 type Testimonial = {
   id: number;
@@ -40,7 +40,7 @@ export default function TestimonialSlider() {
   const goToSlide = (index: number) => setCurrentIndex(index);
 
   // 🔥 Move per-slide based on how many total slides exist
-  const movePercent = 100 / testimonials.length;
+  // const movePercent = 100 / testimonials.length;
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
