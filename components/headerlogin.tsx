@@ -9,8 +9,8 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
         <header className="flex items-center justify-between px-6 h-[60px] border-b border-b-3 border-black bg-white shadow-sm sticky top-0 z-1111">
             {/* Left */}
             <div className="flex items-center space-x-2">
-                <h1 className="text-2xl font-bold text-orange-600 pr-4">Tegore</h1>
-                <span className="text-lg text-gray-500">Algebra I | Unit 1: Fundamentals</span>
+                <h1 className="text-4xl font-semibold text-orange-600 pr-4">Tegore</h1>
+                <span className="text-xl changeFontRail text-gray-500">Algebra I | Unit 1: Fundamentals</span>
             </div>
 
             {/* Right */}
@@ -19,8 +19,8 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
                     <Image
                         src="/dash.svg"
                         alt="Tegore mascot"
-                        width={25}
-                        height={25}
+                        width={27}
+                        height={27}
                         priority
                     />
                 </button>
@@ -28,41 +28,41 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
                     <Image
                         src="/tropi.svg"
                         alt="Tegore mascot"
-                        width={22}
-                        height={22}
+                        width={24}
+                        height={24}
                         priority
                     />
                 </button>
                 <div className="border-l border-black pl-2 h-full flex items-center">
-                    <button className="py-2 px-3 hover:bg-gray-100 flex items-center  rounded-full">
+                    <button className="py-2 px-3 hover:bg-gray-100 flex items-center h-[50px]  rounded-full">
                         <Image
                             src="/flame.svg"
                             alt="Tegore mascot"
-                            width={15}
-                            height={15}
+                            width={17}
+                            height={17}
                             priority
                         />
-                        <span className="pl-3 text-lg">2</span>
+                        <span className="pl-3 pt-2 text-xl">2</span>
                     </button>
-                    <button className="py-2 px-3 hover:bg-gray-100 flex items-center  rounded-full">
+                    <button className="pb-2 pt-3 px-3 hover:bg-gray-100 flex items-center h-[50px]  rounded-full">
                         <Image
                             src="/heart.svg"
+                            alt="Tegore mascot"
+                            width={24}
+                            height={24}
+                            priority
+                        />
+                        <span className="pl-3 pt-2 text-xl">3</span>
+                    </button>
+                    <button className="py-2 px-3 hover:bg-gray-100 flex items-center h-[50px]  rounded-full">
+                        <Image
+                            src="/bag.svg"
                             alt="Tegore mascot"
                             width={20}
                             height={20}
                             priority
                         />
-                        <span className="pl-3 text-lg">3</span>
-                    </button>
-                    <button className="py-2 px-3 hover:bg-gray-100 flex items-center  rounded-full">
-                        <Image
-                            src="/bag.svg"
-                            alt="Tegore mascot"
-                            width={18}
-                            height={18}
-                            priority
-                        />
-                        <span className="pl-3 text-lg">241</span>
+                        <span className="pl-3 pt-2 text-xl">241</span>
                     </button>
 
 
@@ -78,8 +78,8 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
                         <Image
                             src="/monkey.svg"
                             alt="Tegore mascot"
-                            width={22}
-                            height={22}
+                            width={24}
+                            height={24}
                             priority
                         />
                     </button>

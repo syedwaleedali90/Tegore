@@ -29,30 +29,30 @@ export default function LessonSidebar({ isOpen, onClose }: LessonSidebarProps) {
         onClick={onClose}
       />
 
-      <div className="fixed right-0 top-[60px] h-[calc(100vh-60px)]  w-[400px] sidebarBg border-l-4 border-black shadow-2xl z-50 overflow-y-auto">
+      <div className="fixed right-0 top-[60px] h-[calc(100vh-60px)]  w-[350px] sidebarBg border-l-4 border-black shadow-2xl z-50 overflow-y-auto">
         <div className='h-full overflow-y-auto'>
        
 
           <div className="p-6 border-b-4 border-black flex items-start justify-between">
-            <h2 className="text-xl changeFontRail font-bold mb-1">Lesson: <span className='font-normal'> What is a variables?</span></h2>
-            <button
+            <h2 className="text-xl font-bold mb-1">Lesson: <span className='font-light'> What is a variables?</span></h2>
+            {/* <button
               onClick={onClose}
               className=" text-black "
             >
               <X />
-            </button>
+            </button> */}
           </div>
 
           <div className="">
             <div className="space-y-4 mb-6 bg-select py-6">
               {completedItems.map((item, index) => (
                 <div key={`completed-${index}`} className="flex gap-3 px-6">
-                  <div className="flex-shrink-0 w-6 h-6 bg-green-500 border-2 border-black flex items-center justify-center">
+                  <div className="flex-shrink-0 w-8 h-8 bg-green-500 border-2 border-black flex items-center justify-center">
                     <Image
                       src="/checked.svg"
                       alt="Tegore mascot"
-                      width={25}
-                      height={25}
+                      width={50}
+                      height={50}
                       priority
                     />
                   </div>
@@ -64,12 +64,12 @@ export default function LessonSidebar({ isOpen, onClose }: LessonSidebarProps) {
             <div className="space-y-4 pb-6">
               {lackingItems.map((item, index) => (
                 <div key={`lacking-${index}`} className="flex gap-3 px-6">
-                  <div className="flex-shrink-0 w-6 h-6 bg-gray-300 border-2 border-black flex items-center justify-center">
+                  <div className="flex-shrink-0 w-8 h-8 bg-gray-300 border-2 border-black flex items-center justify-center">
                     <Image
                       src="/dash.svg"
                       alt="Tegore mascot"
-                      width={25}
-                      height={25}
+                      width={50}
+                      height={50}
                       priority
                     />
                   </div>
