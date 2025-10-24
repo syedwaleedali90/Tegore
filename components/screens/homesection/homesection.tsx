@@ -6,62 +6,103 @@ import LessonSidebar from "../LessonSidebar/LessonSidebar";
 import ConfirmationModal from "@/components/modals/confirmationModal";
 import FeedModal from "@/components/modals/feedModal";
 import FeedBackSubmit from "@/components/modals/feedBackSubmit";
+import LanguageSelector from "./LanguageSelector";
 
 
 
 function CornerBrackets() {
-    const base: React.CSSProperties = { position: 'absolute', width: 14, height: 14, borderColor: '#111', borderStyle: 'solid', pointerEvents: 'none' };
+    const base: React.CSSProperties = { position: 'absolute', width: 25, height: 25, pointerEvents: 'none' };
     return (
         <>
-            <i style={{ ...base, left: 0, top: 0, borderWidth: '3px 0 0 3px', borderRadius: '6px 0 0 0' }} />
-            <i style={{ ...base, right: 0, top: 0, borderWidth: '3px 3px 0 0', borderRadius: '0 6px 0 0' }} />
-            <i style={{ ...base, left: 0, bottom: 0, borderWidth: '0 0 3px 3px', borderRadius: '0 0 0 6px' }} />
-            <i style={{ ...base, right: 0, bottom: 0, borderWidth: '0 3px 3px 0', borderRadius: '0 0 6px 0' }} />
+            <Image
+                src="/tl.svg"
+                alt="Tegore mascot"
+                width={25}
+                height={25}
+                priority
+                style={{ ...base, left: 0, top: 0 }}
+            />
+            <Image
+                src="/tr.svg"
+                alt="Tegore mascot"
+                width={22}
+                height={22}
+                priority
+                style={{ ...base, right: 0, top: 0 }}
+            />
+            <Image
+                src="/bl.svg"
+                alt="Tegore mascot"
+                width={22}
+                height={22}
+                priority
+                style={{ ...base, left: 0, bottom: 0 }}
+            />
+            <Image
+                src="/br.svg"
+                alt="Tegore mascot"
+                width={22}
+                height={22}
+                priority
+                style={{ ...base, right: 0, bottom: 0 }}
+            />
         </>
     );
 }
 
 
 const LessonCard = ({
-    title = "What is a variable?",
-    time = "4 minutes",
+    title,
+    time,
     buttonText = "Start +12 Gold",
-    buttonColor = "bg-blue-500",
+    buttonColor = "bg-[#0099ff]",
     iconposition = "left"
-}) => {
+}: any) => {
     return (
         <div className="w-80 relative   ml-3 shadow-lg">
             {/* Card Header */}
-            {iconposition == "right" ? <Image
+            {iconposition == "right" && <Image
                 src="/angle.svg"
                 alt="Tegore mascot"
                 width={22}
                 height={22}
-                className="absolute  m-auto -left-[13px] top-[40%]"
+                className="absolute  m-auto -left-[13px] top-[30%]"
                 style={{ transform: 'rotate(180deg)' }}
                 priority
-            /> :
-                <Image
-                    src="/angle.svg"
-                    alt="Tegore mascot"
-                    width={22}
-                    height={22}
-                    className="absolute  m-auto -right-[13px] top-[40%]"
-                    style={{ transform: 'rotate(0deg)' }}
-                    priority
-                />}
-            <div className="overflow-hidden border-4 border-black pb-2">
-                <div className="bg-white p-4 ">
-                    <div className="text-sm font-semibold text-gray-600 mb-1">
-                        Lesson: <span className="text-black">{title}</span>
-                    </div>
-                    <div className="text-xs text-gray-500">{time}</div>
+            />}
+            {iconposition == "left" && <Image
+                src="/angle.svg"
+                alt="Tegore mascot"
+                width={22}
+                height={22}
+                className="absolute  m-auto -right-[13px] top-[30%]"
+                style={{ transform: 'rotate(0deg)' }}
+                priority
+            />}
+            {iconposition == "chit" && <Image
+                src="/bluearrow.svg"
+                alt="Tegore mascot"
+                width={22}
+                height={22}
+                className="absolute  m-auto -right-[13px] top-[30%]"
+                style={{ transform: 'rotate(0deg)' }}
+                priority
+            />}
+            <div className="overflow-hidden border-4 border-black pt-2 pb-2">
+                <div className="bg-white px-4 ">
+                    {title && <div className=" pt-2 text-md font-semibold text-black mb-1">
+                        Lesson: <span className="font-light text-gray-800">{title}</span>
+                    </div>}
+                    {time && <div className="text-sm pb-2 text-gray-400 font-light">{time}</div>}
                 </div>
 
                 {/* Button Section */}
-                <button className={`w-full ${buttonColor} hover:opacity-90 text-white font-bold py-2 px-6 text-lg transition-opacity`}>
-                    {buttonText}
-                </button>
+
+                <div className="h-[35px]">
+                    <button className={`w-full ${buttonColor} absolute left-0 hover:opacity-90 text-white font-semibold py-1 px-6 text-xl transition-opacity`}>
+                        {buttonText}
+                    </button>
+                </div>
             </div>
         </div>
     );
@@ -104,13 +145,14 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                 </div>
             </div>
 
-
-
-
-
             <div className="w-full h-full">
-                <div className="bg-blue-400 mt-5 w-[40%] px-4 py-3">
-                    <h2 className="text-2xl text-white font-bold">Stage 1: Algebraic Terms</h2>
+                <div className="flex items-center">
+                    <div className="bg-blue-400 mt-5 w-[40%] px-4 py-3">
+                        <h2 className="text-2xl text-white font-bold">Stage 1: Algebraic Terms</h2>
+                    </div>
+                    <div className="w-[60%] text-end pr-4">
+                        <LanguageSelector />
+                    </div>
                 </div>
                 <div className="mt-[60px] relative">
                     <span className={`w-[30%] h-[4px] inline-flex ${activeindex >= 1 ? "bg-orange-400" : "bg-gray-400"
@@ -133,10 +175,9 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                 </div>}
                                 {activeindex == 1 && <div className="absolute top-0 left-[135px]">
                                     <LessonCard
-                                        title="Introduction to Functions"
+                                        title="What is a variable?"
                                         time="8 minutes"
-                                        buttonText="Continue +15 Gold"
-                                        buttonColor="bg-blue-500"
+                                        buttonText="Start +12 Gold"
                                         iconposition="right"
                                     />
                                 </div>}
@@ -170,10 +211,9 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     </div>}
                                     {activeindex == 2 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
-                                            title="Introduction to Functions"
+                                            title="What is a variable?"
                                             time="8 minutes"
-                                            buttonText="Continue +15 Gold"
-                                            buttonColor="bg-blue-500"
+                                            buttonText="Start +12 Gold"
                                         />
                                     </div>
                                     }
@@ -217,10 +257,9 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     </div>}
                                     {activeindex == 3 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
-                                            title="Introduction to Functions"
+                                            title="What is a variable?"
                                             time="8 minutes"
-                                            buttonText="Continue +15 Gold"
-                                            buttonColor="bg-blue-500"
+                                            buttonText="Start +12 Gold"
                                         />
                                     </div>
                                     }
@@ -248,6 +287,7 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                         width={90}
                                         height={90}
                                         priority
+                                        className="p-3"
                                         style={{ opacity: activeindex >= 4 ? 1 : 0.5 }}
                                         onClick={activeindex === 4 ? handleClick : undefined}
 
@@ -257,10 +297,9 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     </div>}
                                     {activeindex == 4 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
-                                            title="Introduction to Functions"
+                                            title="What is a variable?"
                                             time="8 minutes"
-                                            buttonText="Continue +15 Gold"
-                                            buttonColor="bg-blue-500"
+                                            buttonText="Start +12 Gold"
                                         />
                                     </div>
                                     }
@@ -301,12 +340,10 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     {activeindex > 5 && <div className="p-2 bg-white z-1">
                                         <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
                                     </div>}
-                                    {activeindex == 5 && <div className="absolute top-0 right-[150px]">
+                                    {activeindex == 5 && <div className="absolute top-4 right-[150px]">
                                         <LessonCard
-                                            title="Introduction to Functions"
-                                            time="8 minutes"
-                                            buttonText="Continue +15 Gold"
-                                            buttonColor="bg-blue-500"
+                                            iconposition= "chit"
+                                            buttonText="Start +12 Gold"
                                         />
                                     </div>
                                     }
@@ -343,10 +380,9 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     </div>}
                                     {activeindex == 6 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
-                                            title="Introduction to Functions"
+                                            title="What is a variable?"
                                             time="8 minutes"
-                                            buttonText="Continue +15 Gold"
-                                            buttonColor="bg-blue-500"
+                                            buttonText="Start +12 Gold"
                                         />
                                     </div>
                                     }
@@ -386,10 +422,9 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     </div>}
                                     {activeindex == 7 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
-                                            title="Introduction to Functions"
+                                            title="What is a variable?"
                                             time="8 minutes"
-                                            buttonText="Continue +15 Gold"
-                                            buttonColor="bg-blue-500"
+                                            buttonText="Start +12 Gold"
                                         />
                                     </div>
                                     }
@@ -410,10 +445,10 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     <Image
                                         src="/elec.svg"
                                         alt="Tegore mascot"
-                                        width={80}
-                                        height={80}
+                                        width={90}
+                                        height={90}
                                         priority
-                                        className="p-2"
+                                        className="p-3"
                                         style={{ opacity: activeindex >= 8 ? 1 : 0.5 }}
                                         onClick={activeindex === 8 ? handleClick : undefined}
 
@@ -423,10 +458,9 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     </div>}
                                     {activeindex == 8 && <div className="absolute top-0 -right-[350px]">
                                         <LessonCard
-                                            title="Introduction to Functions"
+                                            title="What is a variable?"
                                             time="8 minutes"
-                                            buttonText="Continue +15 Gold"
-                                            buttonColor="bg-blue-500"
+                                            buttonText="Start +12 Gold"
                                             iconposition="right"
                                         />
                                     </div>
@@ -452,7 +486,7 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                         <div className="ml-[31%] relative min-h-[60px]">
                             <span className="absolute -top-[66px] left-[0] z-0 p-1 ml-2 bg-white">
                                 <div className="flex items-center">
-                                    {activeindex == 8 && <CornerBrackets />}
+                                    {activeindex == 9 && <CornerBrackets />}
                                     <Image
                                         src="/lesson.svg"
                                         alt="Tegore mascot"
@@ -460,7 +494,7 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                         height={80}
                                         priority
                                         className="pt-3"
-                                        style={{ opacity: activeindex >= 8 ? 1 : 0.5 }}
+                                        style={{ opacity: activeindex >= 9 ? 1 : 0.5 }}
                                         onClick={activeindex === 9 ? handleClick : undefined}
 
                                     />
@@ -469,10 +503,9 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     </div>}
                                     {activeindex == 9 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
-                                            title="Introduction to Functions"
+                                            title="What is a variable?"
                                             time="8 minutes"
-                                            buttonText="Continue +15 Gold"
-                                            buttonColor="bg-blue-500"
+                                            buttonText="Start +12 Gold"
                                         />
                                     </div>
                                     }
@@ -512,10 +545,9 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     </div>}
                                     {activeindex == 10 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
-                                            title="Introduction to Functions"
+                                            title="What is a variable?"
                                             time="8 minutes"
-                                            buttonText="Continue +15 Gold"
-                                            buttonColor="bg-blue-500"
+                                            buttonText="Start +12 Gold"
                                         />
                                     </div>
                                     }
@@ -547,15 +579,14 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                         onClick={activeindex === 11 ? handleClick : undefined}
 
                                     />
-                                     {activeindex > 11 && <div className="p-2 bg-white z-1">
+                                    {activeindex > 11 && <div className="p-2 bg-white z-1">
                                         <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
                                     </div>}
                                     {activeindex == 11 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
-                                            title="Introduction to Functions"
+                                            title="What is a variable?"
                                             time="8 minutes"
-                                            buttonText="Continue +15 Gold"
-                                            buttonColor="bg-blue-500"
+                                            buttonText="Start +12 Gold"
                                         />
                                     </div>
                                     }

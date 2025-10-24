@@ -3,7 +3,7 @@ import { Josefin_Sans, Raleway, Manrope } from "next/font/google";
 import "./globals.css";
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // optional but recommended
+  weight: ["200","300","400", "500", "600", "700"], // optional but recommended
   display: "swap",
 });
 

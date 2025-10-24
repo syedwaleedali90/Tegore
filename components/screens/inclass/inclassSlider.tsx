@@ -64,8 +64,7 @@ export default function InClassSlider() {
     return (
         <div className="relative w-full pt-2 min-h-[200px] ">
             {/* Full-width breakout container */}
-            <div className="fixed left-0 right-0 bg-white overflow-hidden pointer-events-none z-10">
-
+            <div className="bg-white overflow-hidden">
                 <div
                     className="px-0  transition-all duration-500 ease-in-out"
                     style={{ height: containerHeight ? `${containerHeight}px` : "auto" }}
@@ -110,7 +109,7 @@ export default function InClassSlider() {
                 </div>
 
                 {/* Dots */}
-                <div className="flex justify-center pointer-events-auto mt-4 pb-6 space-x-2">
+                <div className="flex justify-center mt-4 pb-6 space-x-2">
                     {testimonials.map((_, index) => (
                         <button
                             key={index}

@@ -18,113 +18,139 @@ export default function Page() {
 
       {/* Screen 0 */}
 
-      <div className="px-6 pb-6 max-w-7xl mx-auto">
+      <div className="px-6 pb-6">
 
+        <div className="max-w-7xl mx-auto">
 
-        <motion.section
-          className="customeHeight flex items-center justify-center snap-start"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          viewport={{ once: false, amount: 0.6 }}
-        >
-          <Screen0 />
-        </motion.section>
-        {[1, 2, 3, 4].map((id) => (
           <motion.section
-            key={id}
-            className="customeHeight hidden sm:flex flex items-center justify-center snap-start"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-            viewport={{ once: false, amount: 0.6 }}
-          >
-            <Layout id={id} />
-          </motion.section>
-        ))}
-
-
-        {/* Layout section (scrollable internally) */}
-
-
-        {/* Testimonial */}
-        <motion.section
-          className="customeHeight flex items-center justify-center snap-start"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          viewport={{ once: false, amount: 0.6 }}
-        >
-          <TestimonialSection />
-        </motion.section>
-
-        {/* Signup */}
-        <motion.section
-          className="customeHeight flex items-center justify-center snap-start"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          viewport={{ once: false, amount: 0.6 }}
-        >
-          <SignupUnitSection />
-        </motion.section>
-
-        {/* Pricing */}
-        <motion.section
-          className="customeHeight flex items-center justify-center snap-start"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          viewport={{ once: false, amount: 0.6 }}
-        >
-          <PricingSection />
-        </motion.section>
-
-        {/* Philosophy (scrolls internally) */}
-       {[1, 2, 3].map((id) => (
-          <motion.section
-            key={id}
             className="customeHeight flex items-center justify-center snap-start"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
             viewport={{ once: false, amount: 0.6 }}
           >
-            <PhilosophySection id={id} />
+            <Screen0 />
           </motion.section>
-        ))}
+        </div>
+        <div className="max-w-7xl mx-auto">
+
+          {[1, 2, 3, 4].map((id) => (
+            <motion.section
+              key={id}
+              className="customeHeight hidden sm:flex flex items-center justify-center snap-start"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.5 }}
+              viewport={{ once: false, amount: 0.6 }}
+            >
+              <Layout id={id} />
+            </motion.section>
+          ))}
+        </div>
+
+
+        {/* Layout section (scrollable internally) */}
+
+
+        {/* Testimonial */}
+        <div className="max-w-7xl mx-auto">
+
+          <motion.section
+            className="customeHeight flex items-center justify-center snap-start"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: false, amount: 0.6 }}
+          >
+            <TestimonialSection />
+          </motion.section>
+        </div>
+
+        {/* Signup */}
+        <div className="max-w-7xl mx-auto">
+
+          <motion.section
+            className="customeHeight flex items-center justify-center snap-start"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: false, amount: 0.6 }}
+          >
+            <SignupUnitSection />
+          </motion.section>
+        </div>
+
+        {/* Pricing */}
+        <div className="max-w-7xl mx-auto">
+
+          <motion.section
+            className="customeHeight flex items-center justify-center snap-start"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: false, amount: 0.6 }}
+          >
+            <PricingSection />
+          </motion.section>
+        </div>
+
+        {/* Philosophy (scrolls internally) */}
+        <div className="max-w-7xl mx-auto">
+
+          {[1, 2, 3].map((id) => (
+            <motion.section
+              key={id}
+              className="customeHeight flex items-center justify-center snap-start"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.5 }}
+              viewport={{ once: false, amount: 0.6 }}
+            >
+              <PhilosophySection id={id} />
+            </motion.section>
+          ))}
+        </div>
 
 
         {/* InClass */}
-        <motion.section
-          className="min-h-screen flex items-center justify-center snap-start"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: false, amount: 0.6 }}
-        >
-          <InClassSection />
-        </motion.section>
+        <div className="">
+
+          <motion.section
+            className="min-h-screen flex items-center justify-center snap-start"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: false, amount: 0.6 }}
+          >
+            <InClassSection />
+          </motion.section>
+        </div>
 
         {/* LearnWith */}
-        <motion.section
-          className="customeHeight flex items-center justify-center snap-start"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: false, amount: 0.6 }}
-        >
-          <LearnWith />
-        </motion.section>
-        <motion.section
-          className="customeHeight pb-4 flex items-center justify-center snap-start block md:hidden"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: false, amount: 0.6 }}
-        >
-          <MobileAppComing />
-        </motion.section>
+        <div className="max-w-7xl mx-auto">
+
+          <motion.section
+            className="customeHeight flex items-center justify-center snap-start"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: false, amount: 0.6 }}
+          >
+            <LearnWith />
+          </motion.section>
+        </div>
+        <div className="max-w-7xl mx-auto">
+
+          <motion.section
+            className="customeHeight pb-4 flex items-center justify-center snap-start block md:hidden"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: false, amount: 0.6 }}
+          >
+            <MobileAppComing />
+          </motion.section>
+        </div>
       </div>
     </div>
   );
