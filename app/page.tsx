@@ -97,10 +97,10 @@ export default function Page() {
 
         {/* InClass */}
         <motion.section
-          className="customeHeight flex items-center justify-center snap-start"
+          className="min-h-screen flex items-center justify-center snap-start"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 1 }}
           viewport={{ once: false, amount: 0.6 }}
         >
           <InClassSection />
@@ -111,7 +111,7 @@ export default function Page() {
           className="customeHeight flex items-center justify-center snap-start"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: false, amount: 0.6 }}
         >
           <LearnWith />
@@ -120,7 +120,7 @@ export default function Page() {
           className="customeHeight pb-4 flex items-center justify-center snap-start block md:hidden"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 1 }}
           viewport={{ once: false, amount: 0.6 }}
         >
           <MobileAppComing />

@@ -25,7 +25,7 @@ export default function MobileAppComing() {
             <div className=" flex-1 mt-4 flex flex-col items-center md:items-start gap-3 sm:gap-4 md:gap-6">
                 <h2
                     className="
-         text-3xl sm:text-4xl md:text-6xl lg:text-7xl 
+         text-4xl sm:text-4xl md:text-6xl lg:text-7xl 
          font-extrabold 
          leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] 
          text-gray-900

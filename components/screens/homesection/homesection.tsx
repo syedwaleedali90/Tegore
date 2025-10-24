@@ -3,6 +3,9 @@ import { Plus } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import LessonSidebar from "../LessonSidebar/LessonSidebar";
+import ConfirmationModal from "@/components/modals/confirmationModal";
+import FeedModal from "@/components/modals/feedModal";
+import FeedBackSubmit from "@/components/modals/feedBackSubmit";
 
 
 
@@ -30,21 +33,21 @@ const LessonCard = ({
         <div className="w-80 relative   ml-3 shadow-lg">
             {/* Card Header */}
             {iconposition == "right" ? <Image
-                src="/tri.svg"
+                src="/angle.svg"
                 alt="Tegore mascot"
                 width={22}
                 height={22}
-                className="absolute  m-auto -left-[15px] top-[40%]"
-                style={{ transform: 'rotate(270deg)' }}
+                className="absolute  m-auto -left-[13px] top-[40%]"
+                style={{ transform: 'rotate(180deg)' }}
                 priority
             /> :
                 <Image
-                    src="/tri.svg"
+                    src="/angle.svg"
                     alt="Tegore mascot"
                     width={22}
                     height={22}
-                    className="absolute  m-auto -right-[15px] top-[40%]"
-                    style={{ transform: 'rotate(90deg)' }}
+                    className="absolute  m-auto -right-[13px] top-[40%]"
+                    style={{ transform: 'rotate(0deg)' }}
                     priority
                 />}
             <div className="overflow-hidden border-4 border-black pb-2">
@@ -64,12 +67,9 @@ const LessonCard = ({
     );
 };
 
-export default function HomeSection() {
-
-
+export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFeed, openFeedSubmit, onCloseFeedSubmit }: any) {
     const [activeindex, setActiveindex] = useState(1);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
 
     const handleClick = () => {
         setActiveindex(activeindex + 1)
@@ -83,7 +83,7 @@ export default function HomeSection() {
             <div className="fixed h-[40%] z-1 bottom-[25%] left-8">
                 <div className="relative w-full h-full">
                     <Image
-                        src="/Tower1.png"
+                        src="/towerleft.svg"
                         alt="Tegore mascot"
                         width={120}          // default mobile size
                         height={120}
@@ -95,7 +95,7 @@ export default function HomeSection() {
                 <div className="relative w-full h-full">
 
                     <Image
-                        src="/Tower2.png"
+                        src="/towerright.svg"
                         alt="Tegore mascot"
                         width={120}          // default mobile size
                         height={120}
@@ -128,9 +128,9 @@ export default function HomeSection() {
                                     style={{ opacity: activeindex >= 1 ? 1 : 0.5 }}
                                     onClick={activeindex === 1 ? handleClick : undefined}
                                 />
-                                 {activeindex > 1 && <div className="p-2 bg-white z-1">
-                                        <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
-                                    </div>}
+                                {activeindex > 1 && <div className="p-2 bg-white z-1">
+                                    <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
+                                </div>}
                                 {activeindex == 1 && <div className="absolute top-0 left-[135px]">
                                     <LessonCard
                                         title="Introduction to Functions"
@@ -200,7 +200,7 @@ export default function HomeSection() {
                             }`}></span>
                         <div className="ml-[0px] relative min-h-[60px]">
                             <span className="absolute -top-[66px] p-1 ml-8">
-                                <div  className="flex items-center">
+                                <div className="flex items-center">
                                     {activeindex == 3 && <CornerBrackets />}
                                     <Image
                                         src="/arrow.svg"
@@ -212,7 +212,7 @@ export default function HomeSection() {
                                         onClick={activeindex === 3 ? handleClick : undefined}
 
                                     />
-                                       {activeindex > 3 && <div className="p-2 bg-white z-1">
+                                    {activeindex > 3 && <div className="p-2 bg-white z-1">
                                         <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
                                     </div>}
                                     {activeindex == 3 && <div className="absolute top-0 right-[150px]">
@@ -240,7 +240,7 @@ export default function HomeSection() {
                             }`}></span>
                         <div className="ml-[0px] relative min-h-[60px]">
                             <span className="absolute -top-[66px] left-[31%] p-1 ml-8 bg-white">
-                                <div>
+                                <div className="flex items-center">
                                     {activeindex == 4 && <CornerBrackets />}
                                     <Image
                                         src="/elec.svg"
@@ -252,6 +252,9 @@ export default function HomeSection() {
                                         onClick={activeindex === 4 ? handleClick : undefined}
 
                                     />
+                                    {activeindex > 4 && <div className="p-2 bg-white z-1">
+                                        <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
+                                    </div>}
                                     {activeindex == 4 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
                                             title="Introduction to Functions"
@@ -283,7 +286,7 @@ export default function HomeSection() {
                             }`}></span> */}
                         <div className="ml-[0px] relative min-h-[60px]">
                             <span className="absolute -top-[66px] left-[31%] p-1 ml-8 bg-white">
-                                <div>
+                                <div className="flex items-center">
                                     {activeindex == 5 && <CornerBrackets />}
                                     <Image
                                         src="/lesson.svg"
@@ -295,6 +298,9 @@ export default function HomeSection() {
                                         onClick={activeindex === 5 ? handleClick : undefined}
 
                                     />
+                                    {activeindex > 5 && <div className="p-2 bg-white z-1">
+                                        <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
+                                    </div>}
                                     {activeindex == 5 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
                                             title="Introduction to Functions"
@@ -320,7 +326,7 @@ export default function HomeSection() {
                             }`}></span>
                         <div className="ml-[0px] relative min-h-[60px]">
                             <span className="absolute -top-[66px] left-[0%] z-111 p-1 ml-8 bg-white">
-                                <div>
+                                <div className="flex items-center">
                                     {activeindex == 6 && <CornerBrackets />}
                                     <Image
                                         src="/lesson.svg"
@@ -332,6 +338,9 @@ export default function HomeSection() {
                                         onClick={activeindex === 6 ? handleClick : undefined}
 
                                     />
+                                    {activeindex > 6 && <div className="p-2 bg-white z-1">
+                                        <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
+                                    </div>}
                                     {activeindex == 6 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
                                             title="Introduction to Functions"
@@ -360,7 +369,7 @@ export default function HomeSection() {
                             }`}></span>
                         <div className="ml-[120px] relative min-h-[60px]">
                             <span className="absolute -top-[66px] left-[0] z-11 p-1 ml-2 bg-white">
-                                <div>
+                                <div className="flex items-center">
                                     {activeindex == 7 && <CornerBrackets />}
                                     <Image
                                         src="/arrow.svg"
@@ -372,6 +381,9 @@ export default function HomeSection() {
                                         onClick={activeindex === 7 ? handleClick : undefined}
 
                                     />
+                                    {activeindex > 7 && <div className="p-2 bg-white z-1">
+                                        <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
+                                    </div>}
                                     {activeindex == 7 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
                                             title="Introduction to Functions"
@@ -393,7 +405,7 @@ export default function HomeSection() {
                             }`}></span>
                         <div className="ml-[120px] relative min-h-[60px]">
                             <span className="absolute -top-[46px] left-[0] z-11 p-1 ml-2 bg-white">
-                                <div>
+                                <div className="flex items-center">
                                     {activeindex == 8 && <CornerBrackets />}
                                     <Image
                                         src="/elec.svg"
@@ -406,6 +418,9 @@ export default function HomeSection() {
                                         onClick={activeindex === 8 ? handleClick : undefined}
 
                                     />
+                                    {activeindex > 8 && <div className="p-2 bg-white z-1">
+                                        <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
+                                    </div>}
                                     {activeindex == 8 && <div className="absolute top-0 -right-[350px]">
                                         <LessonCard
                                             title="Introduction to Functions"
@@ -436,7 +451,7 @@ export default function HomeSection() {
                             }`}></span>
                         <div className="ml-[31%] relative min-h-[60px]">
                             <span className="absolute -top-[66px] left-[0] z-0 p-1 ml-2 bg-white">
-                                <div>
+                                <div className="flex items-center">
                                     {activeindex == 8 && <CornerBrackets />}
                                     <Image
                                         src="/lesson.svg"
@@ -449,6 +464,9 @@ export default function HomeSection() {
                                         onClick={activeindex === 9 ? handleClick : undefined}
 
                                     />
+                                    {activeindex > 9 && <div className="p-2 bg-white z-1">
+                                        <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
+                                    </div>}
                                     {activeindex == 9 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
                                             title="Introduction to Functions"
@@ -476,7 +494,7 @@ export default function HomeSection() {
                             }`}></span>
                         <div className="ml-[51%] relative min-h-[60px]">
                             <span className="absolute -top-[46px] left-[0] z-0 p-1 ml-2 bg-white">
-                                <div className="">
+                                <div className="flex items-center">
                                     {activeindex == 10 && <CornerBrackets />}
                                     <Image
                                         src="/lesson.svg"
@@ -489,6 +507,9 @@ export default function HomeSection() {
                                         onClick={activeindex === 10 ? handleClick : undefined}
 
                                     />
+                                    {activeindex > 10 && <div className="p-2 bg-white z-1">
+                                        <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
+                                    </div>}
                                     {activeindex == 10 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
                                             title="Introduction to Functions"
@@ -513,8 +534,8 @@ export default function HomeSection() {
                             }`}></span>
                         <div className="ml-[61%] relative min-h-[60px]">
                             <span className="absolute -top-[46px] left-[0] z-0 p-1 ml-2 bg-white">
-                                <div className="">
-                                    {activeindex == 10 && <CornerBrackets />}
+                                <div className="flex items-center">
+                                    {activeindex == 11 && <CornerBrackets />}
                                     <Image
                                         src="/lesson.svg"
                                         alt="Tegore mascot"
@@ -526,6 +547,9 @@ export default function HomeSection() {
                                         onClick={activeindex === 11 ? handleClick : undefined}
 
                                     />
+                                     {activeindex > 11 && <div className="p-2 bg-white z-1">
+                                        <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
+                                    </div>}
                                     {activeindex == 11 && <div className="absolute top-0 right-[150px]">
                                         <LessonCard
                                             title="Introduction to Functions"
@@ -544,7 +568,9 @@ export default function HomeSection() {
             </div>
 
 
-
+            <ConfirmationModal open={openConf} onClose={onCloseConf} />
+            <FeedModal open={openFeed} onClose={onCloseFeed} />
+            <FeedBackSubmit open={openFeedSubmit} onClose={onCloseFeedSubmit} />
             <LessonSidebar
                 isOpen={isSidebarOpen}
                 onClose={() => setIsSidebarOpen(false)}

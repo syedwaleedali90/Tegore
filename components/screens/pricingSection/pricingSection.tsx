@@ -51,7 +51,7 @@ export default function PricingSection() {
       <div className="px-6 grid md:grid-cols-2 gap-10 items-center">
         {/* LEFT SIDE */}
         <div>
-          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] text-orange-600 text-left">
+          <h2 className="text-4xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] text-orange-600 text-left">
             Learn for <br className="hidden md:block" /> less than <br /> $2 a
             day
           </h2>

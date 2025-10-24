@@ -8,7 +8,7 @@ export default function SignupUnitSection() {
             <div className="px-6 grid md:grid-cols-2 gap-12 items-center">
                 {/* Left Side */}
                 <div className='flex flex-col'>
-                    <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] text-orange-600 text-left">
+                    <h2 className="text-4xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] text-orange-600 text-left">
                         Sign up for <br className="hidden md:block" /> Algebra 1 <br className='hidden md:block'/> today
                     </h2>
                     <div className="block md:hidden mt-4">

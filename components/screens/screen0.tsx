@@ -36,7 +36,7 @@ export default function Screen0() {
 
                 <h2
                     className="
-    text-3xl sm:text-4xl md:text-6xl lg:text-7xl 
+    text-4xl sm:text-4xl md:text-6xl lg:text-7xl 
     font-extrabold 
     leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] 
     text-gray-900
