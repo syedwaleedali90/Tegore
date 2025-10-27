@@ -15,7 +15,7 @@ export default function Header() {
   };
 
   return (
-    <header className="flex sticky top-0 bg-transparent z-[11] items-center justify-between px-4 py-5 md:px-6 md:py-6 overflow-hidden">
+    <header className="flex sticky top-0 bg-[#FFF8F0]/70 backdrop-blur-sm z-[50] items-center justify-between px-4 py-5 md:px-6 md:py-6">
       {/* Left logo */}
       <div className="flex items-center gap-1">
         <Image
@@ -53,7 +53,7 @@ export default function Header() {
 
           {/* Dropdown */}
           {menuOpen && (
-            <div className="absolute -right-1 mt-1 w-28 sm:w-32 bg-white shadow-lg border border-gray-200">
+            <div className="absolute -right-1 mt-1 w-28 sm:w-32 bg-white shadow-lg border border-gray-200 z-[20]">
               {["Students", "Parents", "Teachers", "Districts"].map((item) => (
                 <Link
                   key={item}

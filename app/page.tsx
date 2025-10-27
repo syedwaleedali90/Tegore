@@ -10,12 +10,43 @@ import Screen0 from "@/components/screens/screen0";
 import SignupUnitSection from "@/components/screens/signupUnit/signupUnitSection";
 import TestimonialSection from "@/components/screens/testimonials/TestimonialSection";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Page() {
   return (
-    <div className="h-screen w-full overflow-y-scroll overflow-x-hidden snap-y snap-mandatory scroll-smooth bg-gradient-to-br from-[#FFF8F0] via-[#FFFAF5] to-white">
-      <div className="snap-start">
-        <Header />
+    <div className="h-screen w-full overflow-y-scroll overflow-x-hidden bg-gradient-to-br from-[#FFF8F0] via-[#FFFAF5] to-white">
+      <Header />
+
+      {/* Banner */}
+      <div className="w-full relative overflow-hidden z-[1]" style={{ height: '45px' }}>
+        <Image
+          src="/banner-long.svg"
+          alt="Banner"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 flex items-center overflow-hidden">
+          <motion.div
+            className="text-white font-bold text-xl whitespace-nowrap flex gap-32"
+            initial={{ x: "0%" }}
+            animate={{ x: "-50%" }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            <span>TURN ON SOUND!</span>
+            <span>Algebra I & II content OUT NOW</span>
+            <span>TURN ON SOUND!</span>
+            <span>Algebra I & II content OUT NOW</span>
+            <span>TURN ON SOUND!</span>
+            <span>Algebra I & II content OUT NOW</span>
+            <span>TURN ON SOUND!</span>
+            <span>Algebra I & II content OUT NOW</span>
+          </motion.div>
+        </div>
       </div>
 
       {/* Screen 0 */}

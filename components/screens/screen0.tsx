@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRive } from "@rive-app/react-canvas";
+import { motion } from "framer-motion";
 
 export default function Screen0() {
     const { RiveComponent } = useRive({
@@ -10,30 +11,35 @@ export default function Screen0() {
         <section className=" md:flex-row flex items-center justify-between
          flex-col items-center justify-between gap-8">
             <div className="relative flex-1 flex flex-col ">
-                <div className=" hidden md:block  pl-[10%] -mt-8">
-                    <Image
-                        src="/Group1.svg"
-                        alt="Tegore mascot"
-                        width={250}
-                        height={250}
-                        priority
-                    />
-                </div>
-
                 <div className="items-center flex flex-col md:items-center text-center md:text-left">
 
-                    <div className="w-[160px] h-[160px] sm:w-[160px] sm:h-[160px] md:w-[280px] md:h-[280px]">
+                    <motion.div
+                        className="w-[180px] h-[180px] sm:w-[180px] sm:h-[180px] md:w-[320px] md:h-[320px] mt-10"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
                         <RiveComponent />
-                    </div>
-                    <div className="mt-8 border hidden md:block border-3 w-[75%] border-orange-500 rounded-lg px-6 py-4 text-xl font-normal text-black-700 bg-white/40">
+                    </motion.div>
+                    <motion.div
+                        className="mt-8 border hidden md:block border-3 w-[75%] border-orange-500 rounded-lg px-6 py-4 text-xl font-normal text-black-700 bg-white/40"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                    >
                         Hey there! I'm Tegore - scroll down to begin the experience
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 
-            <div className=" flex-1 flex flex-col items-center md:items-start gap-4 sm:gap-6 md:gap-8">
-                <div className="flex items-center gap-2 sm:mt-2 md:mt-0 md:self-center">
-                    <span className="text-sm text-gray-700 flex-inline items-center flex rounded-lg border border-orange-500 px-5 py-2">Backed by <span className="w-4 items-center flex justify-center mx-1 h-4 pt-1  bg-orange-600 text-white" style={{fontSize:'12px'}}>Y </span> Combinator</span>
+            <motion.div
+                className=" flex-1 flex flex-col items-center md:items-start gap-4 sm:gap-6 md:gap-8"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+            >
+                <div className="flex items-center gap-2 sm:mt-2 md:mt-0 md:self-start">
+                    <span className="text-sm text-gray-700 flex-inline items-center flex rounded-lg px-5 py-2">Backed by <span className="w-4 items-center flex justify-center mx-1 h-4 pt-1  bg-orange-600 text-white" style={{fontSize:'12px'}}>Y </span> Combinator</span>
                 </div>
 
                 <h2
@@ -59,7 +65,7 @@ export default function Screen0() {
     transition-all duration-150">
                     Start Learning
                 </button>
-            </div>
+            </motion.div>
         </section>
     );
 }
