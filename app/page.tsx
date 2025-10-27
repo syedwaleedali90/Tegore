@@ -14,7 +14,9 @@ import { motion } from "framer-motion";
 export default function Page() {
   return (
     <div className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-white">
-      <Header />
+      <div className="snap-start">
+        <Header />
+      </div>
 
       {/* Screen 0 */}
 
@@ -23,7 +25,7 @@ export default function Page() {
         <div className="max-w-7xl mx-auto">
 
           <motion.section
-            className="customeHeight flex items-center justify-center snap-start"
+            className="min-h-screen flex items-start justify-center pt-8 md:pt-12"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1.5 }}

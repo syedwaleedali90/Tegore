@@ -2,14 +2,14 @@ import Image from "next/image";
 export default function Screen0() {
     return (
         <section className=" md:flex-row flex items-center justify-between
-         flex-col items-center justify-between">
+         flex-col items-center justify-between gap-8">
             <div className="relative flex-1 flex flex-col ">
-                <div className=" hidden md:block  pl-[10%]">
+                <div className=" hidden md:block  pl-[10%] -mt-8">
                     <Image
                         src="/Group1.svg"
                         alt="Tegore mascot"
-                        width={200}
-                        height={200}
+                        width={250}
+                        height={250}
                         priority
                     />
                 </div>
@@ -19,26 +19,26 @@ export default function Screen0() {
                     <Image
                         src="/panda.svg"
                         alt="Tegore mascot"
-                        width={150}          // default mobile size
-                        height={150}
-                        className="sm:w-[150px] sm:h-[150px] md:w-[220px] md:h-[220px]" // scale up
+                        width={160}
+                        height={160}
+                        className="sm:w-[160px] sm:h-[160px] md:w-[280px] md:h-[280px]"
                     />
-                    <div className="mt-6 border hidden md:block   border-3 boxWidth border-orange-500 rounded-sm px-4 py-3 text-md font-bold text-black-700">
-                        Hey there! I’m Tegore - scroll down to begin the experience
+                    <div className="mt-8 border hidden md:block border-3 w-[75%] border-orange-500 rounded-lg px-6 py-4 text-xl font-normal text-black-700">
+                        Hey there! I'm Tegore - scroll down to begin the experience
                     </div>
                 </div>
             </div>
 
-            <div className=" flex-1 flex flex-col items-center md:items-start gap-3 sm:gap-4 md:gap-6">
+            <div className=" flex-1 flex flex-col items-center md:items-start gap-4 sm:gap-6 md:gap-8">
                 <div className="flex items-center gap-2 sm:mt-2  md:mt-0">
-                    <span className="text-xs text-gray-700 flex-inline items-center flex rounded-lg btngray px-4 py-1">Backed by <span className="w-3 items-center flex justify-center mx-1 h-3 pt-1  bg-orange-600 text-white" style={{fontSize:'11px'}}>Y </span> Combinator</span>
+                    <span className="text-sm text-gray-700 flex-inline items-center flex rounded-lg btngray px-5 py-2">Backed by <span className="w-4 items-center flex justify-center mx-1 h-4 pt-1  bg-orange-600 text-white" style={{fontSize:'12px'}}>Y </span> Combinator</span>
                 </div>
 
                 <h2
                     className="
-    text-4xl sm:text-4xl md:text-6xl lg:text-7xl 
-    font-extrabold 
-    leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] 
+    text-5xl sm:text-5xl md:text-7xl lg:text-8xl
+    font-bold
+    leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05]
     text-gray-900
     text-center md:text-left
   "
@@ -46,10 +46,11 @@ export default function Screen0() {
                     Meet your <br className="hidden md:block" /> new math <br /> teacher.
                 </h2>
 
-                <button className="  bg-blue-500 text-white 
-    px-4 py-2 text-sm font-semibold 
-    sm:px-6 sm:py-2 sm:text-base
-    hover:bg-blue-600">
+                <button className="bg-[#0099FF] text-white
+    px-6 py-2 text-base font-semibold
+    sm:px-8 sm:py-2 sm:text-lg
+    md:px-10 md:py-2.5 md:text-xl
+    hover:bg-[#0088EE] transition-colors">
                     Start Learning
                 </button>
             </div>

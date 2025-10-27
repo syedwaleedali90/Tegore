@@ -15,34 +15,33 @@ export default function Header() {
   };
 
   return (
-    <header className="flex sticky top-0 bg-white z-[11] items-center justify-between px-4 py-3 md:px-6">
+    <header className="flex sticky top-0 bg-white z-[11] items-center justify-between px-4 py-5 md:px-6 md:py-6">
       {/* Left logo */}
       <div className="flex items-center gap-1">
         <Image
           src="/logo.svg"
           alt="Tegore logo"
-          width={36}
-          height={36}
-          className="object-contain sm:w-[44px] sm:h-[44px]"
+          width={44}
+          height={44}
+          className="object-contain sm:w-[52px] sm:h-[52px]"
         />
-        <h1 className="text-[24px] sm:text-[30px] font-bold text-orange-600">
+        <h1 className="text-[28px] sm:text-[36px] font-medium text-orange-600">
           Tegore
         </h1>
       </div>
 
       {/* Right links */}
-      <div className="flex items-center gap-4 text-sm">
+      <div className="flex items-center gap-4">
         <button
           onClick={() => handleLogin()}
-          className="hidden md:block font-semibold text-gray-700 hover:underline">
+          className="hidden md:block font-semibold text-gray-700 hover:underline text-base">
           Log In
         </button>
 
         <div className="relative">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            style={{ lineHeight: '17px' }}
-            className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 font-semibold  hover:bg-blue-600 text-xs sm:text-sm"
+            className="bg-[#0099FF] text-white px-4 py-1.5 sm:px-5 sm:py-2 font-semibold hover:bg-[#0088EE] text-sm sm:text-base relative overflow-visible after:content-[''] after:absolute after:top-0 after:right-0 after:bottom-0 after:w-screen after:bg-[#0099FF] after:translate-x-full after:-z-10 hover:after:bg-[#0088EE]"
           >
             Get Started
           </button>
