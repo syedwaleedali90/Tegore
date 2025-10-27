@@ -1,5 +1,11 @@
 import Image from "next/image";
+import { useRive } from "@rive-app/react-canvas";
+
 export default function Screen0() {
+    const { RiveComponent } = useRive({
+        src: "/bear_hi.riv",
+        autoplay: true,
+    });
     return (
         <section className=" md:flex-row flex items-center justify-between
          flex-col items-center justify-between gap-8">
@@ -16,14 +22,10 @@ export default function Screen0() {
 
                 <div className="items-center flex flex-col md:items-center text-center md:text-left">
 
-                    <Image
-                        src="/panda.svg"
-                        alt="Tegore mascot"
-                        width={160}
-                        height={160}
-                        className="sm:w-[160px] sm:h-[160px] md:w-[280px] md:h-[280px]"
-                    />
-                    <div className="mt-8 border hidden md:block border-3 w-[75%] border-orange-500 rounded-lg px-6 py-4 text-xl font-normal text-black-700 bg-white">
+                    <div className="w-[160px] h-[160px] sm:w-[160px] sm:h-[160px] md:w-[280px] md:h-[280px]">
+                        <RiveComponent />
+                    </div>
+                    <div className="mt-8 border hidden md:block border-3 w-[75%] border-orange-500 rounded-lg px-6 py-4 text-xl font-normal text-black-700 bg-white/40">
                         Hey there! I'm Tegore - scroll down to begin the experience
                     </div>
                 </div>
