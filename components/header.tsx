@@ -15,15 +15,15 @@ export default function Header() {
   };
 
   return (
-    <header className="flex sticky top-0 bg-white z-[11] items-center justify-between px-4 py-5 md:px-6 md:py-6">
+    <header className="flex sticky top-0 bg-transparent z-[11] items-center justify-between px-4 py-5 md:px-6 md:py-6 overflow-hidden">
       {/* Left logo */}
       <div className="flex items-center gap-1">
         <Image
-          src="/logo.svg"
+          src="/tegore-logo-transparent.png"
           alt="Tegore logo"
           width={44}
           height={44}
-          className="object-contain sm:w-[52px] sm:h-[52px]"
+          className="object-contain sm:w-[52px] sm:h-[52px] -mt-2"
         />
         <h1 className="text-[28px] sm:text-[36px] font-medium text-orange-600">
           Tegore
@@ -41,7 +41,12 @@ export default function Header() {
         <div className="relative">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="bg-[#0099FF] text-white px-4 py-1.5 sm:px-5 sm:py-2 font-semibold hover:bg-[#0088EE] text-sm sm:text-base relative overflow-visible after:content-[''] after:absolute after:top-0 after:right-0 after:bottom-0 after:w-screen after:bg-[#0099FF] after:translate-x-full after:-z-10 hover:after:bg-[#0088EE]"
+            className="bg-[#0099FF] text-white px-4 py-1.5 sm:px-5 sm:py-2 font-semibold text-sm sm:text-base
+            rounded-lg
+            shadow-[4px_4px_0_0_#0066CC]
+            hover:shadow-[2px_2px_0_0_#0066CC] hover:translate-x-[2px] hover:translate-y-[2px]
+            active:shadow-none active:translate-x-[4px] active:translate-y-[4px]
+            transition-all duration-150"
           >
             Get Started
           </button>

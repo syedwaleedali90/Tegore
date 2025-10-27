@@ -13,16 +13,55 @@ import { motion } from "framer-motion";
 
 export default function Page() {
   return (
-    <div className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-white">
+    <div className="h-screen w-full overflow-y-scroll overflow-x-hidden snap-y snap-mandatory scroll-smooth bg-gradient-to-br from-[#FFF8F0] via-[#FFFAF5] to-white">
       <div className="snap-start">
         <Header />
       </div>
 
       {/* Screen 0 */}
 
-      <div className="px-6 pb-6">
+      <div className="px-6 pb-6 relative">
+        {/* Floating geometric shapes - full width */}
+        <motion.div
+          className="fixed top-[20%] left-[5%] text-orange-300 text-6xl font-light opacity-40 z-[1] pointer-events-none"
+          animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        >
+          +
+        </motion.div>
+        <motion.div
+          className="fixed top-[30%] right-[5%] text-blue-300 text-5xl font-light opacity-35 z-[1] pointer-events-none"
+          animate={{ y: [0, 25, 0], rotate: [0, -10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          ×
+        </motion.div>
+        <motion.div
+          className="fixed bottom-[15%] left-[10%] text-orange-300 text-7xl font-light opacity-40 z-[1] pointer-events-none"
+          animate={{ y: [0, -30, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        >
+          π
+        </motion.div>
+        <motion.div
+          className="fixed top-[50%] right-[8%] text-blue-300 text-5xl font-light opacity-35 z-[1] pointer-events-none"
+          animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        >
+          ÷
+        </motion.div>
+        <motion.div
+          className="fixed top-[45%] left-[15%] w-14 h-14 border-3 border-orange-300 opacity-25 rounded-full z-[1] pointer-events-none"
+          animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="fixed bottom-[25%] right-[18%] w-10 h-10 border-3 border-blue-300 opacity-30 z-[1] pointer-events-none"
+          animate={{ rotate: [0, 90, 0], y: [0, -15, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
 
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto relative z-10">
 
           <motion.section
             className="min-h-screen flex items-start justify-center pt-8 md:pt-12"
