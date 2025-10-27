@@ -8,18 +8,36 @@ export default function Screen0() {
     const [userInput, setUserInput] = useState("");
     const [typedText, setTypedText] = useState("");
     const [saidYes, setSaidYes] = useState(false);
+    const [noYesResponse, setNoYesResponse] = useState(false);
+    const [firstClick, setFirstClick] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const fullText = "Hey there! I'm Tegore - Type yes if you can hear me!";
+    const fullText = noYesResponse
+        ? "Oh, you didn't type yes. You must like thinking outside of the box! Try holding the SPACE BAR to talk to me."
+        : "Hey there! I'm Tegore - Type yes if you can hear me!";
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && userInput.trim()) {
             const input = userInput.toLowerCase().trim();
             if (input === "yes") {
                 setSaidYes(true);
+            } else {
+                setNoYesResponse(true);
+                setTypedText("");
+                const audio = new Audio('/no-yes-response.mp3');
+                audio.play().catch(error => console.log('Audio play failed:', error));
             }
             setUserInput("");
         }
+    };
+
+    const handleDialogueClick = () => {
+        if (!firstClick) {
+            const clickSound = new Audio('/computer-mouse-click-351398.mp3');
+            clickSound.play().catch(error => console.log('Click sound failed:', error));
+            setFirstClick(true);
+        }
+        setIsClicked(true);
     };
 
     useEffect(() => {
@@ -40,19 +58,23 @@ export default function Screen0() {
 
     useEffect(() => {
         if (isClicked) {
-            const audio = new Audio('/ElevenLabs_2025-10-27T06_59_29_Hope - upbeat and clear_pvc_sp96_s50_sb75_v3.mp3');
-            audio.play().catch(error => console.log('Audio play failed:', error));
+            const timeout = setTimeout(() => {
+                const audio = new Audio('/welcome-message.mp3');
+                audio.play().catch(error => console.log('Audio play failed:', error));
+            }, 500);
+            return () => clearTimeout(timeout);
         }
     }, [isClicked]);
 
     useEffect(() => {
         if (isClicked && typedText.length < fullText.length) {
+            const delay = (typedText.length === 0 && !noYesResponse) ? 500 : 50;
             const timeout = setTimeout(() => {
                 setTypedText(fullText.slice(0, typedText.length + 1));
-            }, 50);
+            }, delay);
             return () => clearTimeout(timeout);
         }
-    }, [isClicked, typedText, fullText]);
+    }, [isClicked, typedText, fullText, noYesResponse]);
     // const { RiveComponent } = useRive({
     //     src: "/bear_hi.riv",
     //     autoplay: true,
@@ -87,7 +109,7 @@ export default function Screen0() {
                         transition={{ duration: 0.5, delay: 0.5 }}
                         whileHover={!isClicked ? { y: -8, boxShadow: "0px 12px 24px rgba(249, 115, 22, 0.3)", transition: { duration: 0.15 } } : {}}
                         style={{ transition: 'transform 0.15s, box-shadow 0.15s' }}
-                        onClick={() => setIsClicked(true)}
+                        onClick={handleDialogueClick}
                     >
                         {isClicked
                             ? typedText

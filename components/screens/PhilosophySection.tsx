@@ -35,7 +35,7 @@ export default function PhilosophySection({ id }: { id: number }) {
   return (
     <div
       id={`philosophy-${slide.id}`}
-      className="flex flex-col md:flex-row items-center justify-center h-auto  w-full bg-white px-6 md:px-10 pb-6 md:py-0"
+      className="flex flex-col md:flex-row items-center justify-center h-auto  w-full bg-gradient-to-br from-[#FFF8F0] via-[#FFFAF5] to-white px-6 md:px-10 pb-6 md:py-0"
     >
       {/* LEFT SIDE (Image) */}
       <div className="w-full md:w-1/2 flex flex-col items-center justify-center mb-8 md:mb-0">

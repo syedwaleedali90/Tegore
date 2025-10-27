@@ -64,7 +64,7 @@ export default function InClassSlider() {
     return (
         <div className="relative w-full pt-2 min-h-[200px] ">
             {/* Full-width breakout container */}
-            <div className="bg-white overflow-hidden">
+            <div className="bg-gradient-to-br from-[#FFF8F0] via-[#FFFAF5] to-white overflow-hidden">
                 <div
                     className="px-0  transition-all duration-500 ease-in-out"
                     style={{ height: containerHeight ? `${containerHeight}px` : "auto" }}

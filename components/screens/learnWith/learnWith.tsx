@@ -13,7 +13,7 @@ export default function LearnWith() {
     ];
 
     return (
-        <section className="bg-white py-2 flex items-center justify-center flex-col">
+        <section className="bg-gradient-to-br from-[#FFF8F0] via-[#FFFAF5] to-white py-2 flex items-center justify-center flex-col">
             <h2 className="  text-4xl sm:text-4xl md:text-6xl lg:text-7xl 
     font-extrabold 
     leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05] 

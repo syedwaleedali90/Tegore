@@ -9,7 +9,7 @@ export default function InClassSection() {
 
 
     return (
-        <section className="bg-white pb-0 pt-2 w-full md:pt-16 flex flex-col justify-between">
+        <section className="bg-gradient-to-br from-[#FFF8F0] via-[#FFFAF5] to-white pb-0 pt-2 w-full md:pt-16 flex flex-col justify-between">
             <div className="max-w-7xl mx-auto">
                 <div className="px-6 grid md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 items-center">
                     <div>
