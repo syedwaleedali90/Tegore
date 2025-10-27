@@ -34,7 +34,7 @@ export default function Layout({ id }: { id: number }) {
   if (!slide) return null;
 
   return (
-    <div key={id} className="flex items-center justify-center  w-full bg-white">
+    <div key={id} className="flex items-center justify-center  w-full bg-gradient-to-br from-[#FFF8F0] via-[#FFFAF5] to-white">
       {/* LEFT SIDE */}
       <div className="w-1/2 flex flex-col items-center justify-center">
         <Image
