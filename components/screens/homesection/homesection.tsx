@@ -117,7 +117,7 @@ const LessonCard = ({
     );
 };
 
-export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFeed, openFeedSubmit, onCloseFeedSubmit }: any) {
+export default function HomeSection() {
     const [activeindex, setActiveindex] = useState(1);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -605,10 +605,6 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                 </div>
             </div>
 
-
-            <ConfirmationModal open={openConf} onClose={onCloseConf} />
-            <FeedModal open={openFeed} onClose={onCloseFeed} />
-            <FeedBackSubmit open={openFeedSubmit} onClose={onCloseFeedSubmit} />
             <LessonSidebar
                 isOpen={isSidebarOpen}
                 onClose={() => setIsSidebarOpen(false)}
