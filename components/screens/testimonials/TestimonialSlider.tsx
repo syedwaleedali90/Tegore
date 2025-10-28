@@ -49,10 +49,40 @@ export default function TestimonialSlider() {
   //   return () => clearInterval(interval);
   // }, [testimonials.length]);
 
+
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeDistance = touchStartX - touchEndX;
+    const swipeThreshold = 50; // Minimum distance to trigger swipe
+
+    if (swipeDistance > swipeThreshold) {
+      // Swiped left → next slide
+      goToSlide(currentIndex + 1);
+    } else if (swipeDistance < -swipeThreshold) {
+      // Swiped right → previous slide
+      goToSlide(currentIndex - 1);
+    }
+  };
+
+
   return (
     <div className="w-full">
       {/* Slider container */}
-      <div className="overflow-hidden relative flex items-center justify-center h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px]">
+      <div className="overflow-hidden relative flex items-center justify-center h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px]"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}>
         <AnimatePresence mode="wait">
           <motion.div
             key={testimonials[currentIndex].id}

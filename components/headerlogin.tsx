@@ -6,7 +6,7 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
     const [open, setOpen] = useState(false);
 
     return (
-        <header className="flex items-center justify-between px-6 h-[60px] border-b border-b-3 border-black bg-white shadow-sm sticky top-0 z-1111">
+        <header className="flex items-center justify-between pl-6 h-[70px] border-b border-b-3 border-black bg-white shadow-sm sticky top-0 z-1111">
             {/* Left */}
             <div className="flex items-center space-x-2">
                 <h1 className="text-4xl font-semibold text-orange-600 pr-4">Tegore</h1>
@@ -19,8 +19,8 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
                     <Image
                         src="/dash.svg"
                         alt="Tegore mascot"
-                        width={27}
-                        height={27}
+                        width={32}
+                        height={32}
                         priority
                     />
                 </button>
@@ -28,8 +28,8 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
                     <Image
                         src="/tropi.svg"
                         alt="Tegore mascot"
-                        width={24}
-                        height={24}
+                        width={29}
+                        height={29}
                         priority
                     />
                 </button>
@@ -38,8 +38,8 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
                         <Image
                             src="/flame.svg"
                             alt="Tegore mascot"
-                            width={17}
-                            height={17}
+                            width={20}
+                            height={20}
                             priority
                         />
                         <span className="pl-3 pt-2 text-xl">2</span>
@@ -48,8 +48,8 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
                         <Image
                             src="/heart.svg"
                             alt="Tegore mascot"
-                            width={24}
-                            height={24}
+                            width={27}
+                            height={27}
                             priority
                         />
                         <span className="pl-3 pt-2 text-xl">3</span>
@@ -58,8 +58,8 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
                         <Image
                             src="/bag.svg"
                             alt="Tegore mascot"
-                            width={20}
-                            height={20}
+                            width={23}
+                            height={23}
                             priority
                         />
                         <span className="pl-3 pt-2 text-xl">241</span>
@@ -78,8 +78,8 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
                         <Image
                             src="/monkey.svg"
                             alt="Tegore mascot"
-                            width={24}
-                            height={24}
+                            width={27}
+                            height={27}
                             priority
                         />
                     </button>

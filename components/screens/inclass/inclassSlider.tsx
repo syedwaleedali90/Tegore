@@ -61,6 +61,37 @@ export default function InClassSlider() {
         }
     }, [current]);
 
+
+
+    // 🧠 Swipe handling
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        touchEndX = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        const swipeDistance = touchStartX - touchEndX;
+        const swipeThreshold = 50; // Minimum distance to trigger swipe
+
+        if (swipeDistance > swipeThreshold) {
+            // Swiped left → next slide
+            setCurrent((prev) => (prev + 1) % testimonials.length);
+        } else if (swipeDistance < -swipeThreshold) {
+            // Swiped right → previous slide
+            setCurrent((prev) =>
+                prev === 0 ? testimonials.length - 1 : prev - 1
+            );
+        }
+    };
+
+
+
     return (
         <div className="relative w-full pt-2 min-h-[200px] ">
             {/* Full-width breakout container */}
@@ -68,6 +99,9 @@ export default function InClassSlider() {
                 <div
                     className="px-0  transition-all duration-500 ease-in-out"
                     style={{ height: containerHeight ? `${containerHeight}px` : "auto" }}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
                 >
                     <AnimatePresence mode="wait">
                         <motion.div
