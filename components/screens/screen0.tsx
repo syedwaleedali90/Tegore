@@ -10,17 +10,27 @@ export default function Screen0() {
     const [saidYes, setSaidYes] = useState(false);
     const [noYesResponse, setNoYesResponse] = useState(false);
     const [firstClick, setFirstClick] = useState(false);
+    const [isSpacePressed, setIsSpacePressed] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const fullText = noYesResponse
-        ? "Oh, you didn't type yes. You must like thinking outside of the box! Try holding the SPACE BAR to talk to me."
+    const fullText = saidYes
+        ? "Hello! Glad to meet you, what's your name?"
+        : noYesResponse
+        ? "Oh, you didn't type yes. You must like thinking outside of the box! What's your name by the way?"
         : "Hey there! I'm Tegore - Type yes if you can hear me!";
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === " " && !userInput.trim()) {
+            e.preventDefault();
+            return;
+        }
         if (e.key === "Enter" && userInput.trim()) {
             const input = userInput.toLowerCase().trim();
             if (input === "yes") {
                 setSaidYes(true);
+                setTypedText("");
+                const audio = new Audio('/yes-response.mp3');
+                audio.play().catch(error => console.log('Audio play failed:', error));
             } else {
                 setNoYesResponse(true);
                 setTypedText("");
@@ -68,13 +78,34 @@ export default function Screen0() {
 
     useEffect(() => {
         if (isClicked && typedText.length < fullText.length) {
-            const delay = (typedText.length === 0 && !noYesResponse) ? 500 : 50;
+            const delay = (typedText.length === 0 && !noYesResponse && !saidYes) ? 500 : 50;
             const timeout = setTimeout(() => {
                 setTypedText(fullText.slice(0, typedText.length + 1));
             }, delay);
             return () => clearTimeout(timeout);
         }
-    }, [isClicked, typedText, fullText, noYesResponse]);
+    }, [isClicked, typedText, fullText, noYesResponse, saidYes]);
+
+    useEffect(() => {
+        if (noYesResponse) {
+            const handleKeyDown = (e: KeyboardEvent) => {
+                if (e.code === 'Space' && !isSpacePressed) {
+                    setIsSpacePressed(true);
+                }
+            };
+            const handleKeyUp = (e: KeyboardEvent) => {
+                if (e.code === 'Space') {
+                    setIsSpacePressed(false);
+                }
+            };
+            window.addEventListener('keydown', handleKeyDown);
+            window.addEventListener('keyup', handleKeyUp);
+            return () => {
+                window.removeEventListener('keydown', handleKeyDown);
+                window.removeEventListener('keyup', handleKeyUp);
+            };
+        }
+    }, [noYesResponse, isSpacePressed]);
     // const { RiveComponent } = useRive({
     //     src: "/bear_hi.riv",
     //     autoplay: true,
@@ -156,6 +187,27 @@ export default function Screen0() {
                                 autoFocus
                                 placeholder=""
                             />
+                        </motion.div>
+                    )}
+                    {noYesResponse && (
+                        <motion.div
+                            className="mt-6 flex justify-center"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3, delay: 0.2 }}
+                        >
+                            <motion.div
+                                animate={{ y: isSpacePressed ? 4 : 0 }}
+                                transition={{ duration: 0.1, ease: "easeOut" }}
+                            >
+                                <Image
+                                    src={isSpacePressed ? "/spacebar-pressed.svg" : "/spacebar-unpressed.svg"}
+                                    alt="Spacebar"
+                                    width={271}
+                                    height={isSpacePressed ? 56 : 61}
+                                    className="w-[200px] sm:w-[250px] md:w-[271px]"
+                                />
+                            </motion.div>
                         </motion.div>
                     )}
                 </div>
