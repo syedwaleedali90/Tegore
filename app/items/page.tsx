@@ -8,15 +8,16 @@ type Item = {
     id: number;
     name: string;
     image: string;
+    rightMon: string;
     price: number;
 };
 const items: Item[] = [
-    { id: 1, name: "1 Life", image: "/item1.svg", price: 25 },
-    { id: 2, name: "1 Streak Freeze", image: "/item2.svg", price: 50 },
-    { id: 3, name: "Basketball Jersey", image: "/item3.svg", price: 95 },
-    { id: 4, name: "Artist Tools", image: "/item4.svg", price: 185 },
-    { id: 5, name: "Beard", image: "/item5.svg", price: 65 },
-    { id: 6, name: "Pop-star outfit", image: "/item6.svg", price: 230 },
+    { id: 1, rightMon:'/rightMonkey.svg', name: "1 Life", image: "/item1.svg", price: 25 },
+    { id: 2, rightMon:'/rightMonkey.svg', name: "1 Streak Freeze", image: "/item2.svg", price: 50 },
+    { id: 3, rightMon:'/shirtMon.svg', name: "Basketball Jersey", image: "/item3.svg", price: 95 },
+    { id: 4, rightMon:'/paintMon.svg', name: "Artist Tools", image: "/item4.svg", price: 185 },
+    { id: 5, rightMon:'/beardMon.svg', name: "Beard", image: "/item5.svg", price: 65 },
+    { id: 6, rightMon:'/pantMon.svg', name: "Pop-star outfit", image: "/item6.svg", price: 230 },
 ];
 
 export default function ItemsPage() {
@@ -77,7 +78,7 @@ export default function ItemsPage() {
 
                         <h2 className="text-3xl text-center font-bold text-black">Bunty</h2>
                         <Image
-                            src="/rightMonkey.svg"
+                            src={selectedItem && selectedItem.rightMon ? selectedItem.rightMon : '/rightMonkey.svg'} 
                             alt="Bunty"
                             width={250}
                             height={250}
@@ -103,7 +104,7 @@ export default function ItemsPage() {
             <AnimatePresence>
                 {selectedItem && (
                     <motion.div
-                        className="fixed inset-0 flex items-center justify-center z-50"
+                        className="fixed w-[calc(100%-296px)] inset-0 flex items-center justify-center z-50"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
