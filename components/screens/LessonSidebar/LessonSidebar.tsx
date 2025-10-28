@@ -29,7 +29,7 @@ export default function LessonSidebar({ isOpen, onClose }: LessonSidebarProps) {
         onClick={onClose}
       />
 
-      <div className="fixed right-0 top-[60px] h-[calc(100vh-60px)]  w-[350px] sidebarBg border-l-4 border-black shadow-2xl z-50 overflow-y-auto">
+      <div className="fixed right-0 top-[70px] h-[calc(100vh-70px)]  w-[296px] sidebarBg border-l-4 border-black shadow-2xl z-50 overflow-y-auto">
         <div className='h-full overflow-y-auto'>
        
 
