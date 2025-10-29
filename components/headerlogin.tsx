@@ -5,7 +5,7 @@ import ConfirmationModal from "./modals/confirmationModal";
 import FeedModal from "./modals/feedModal";
 import FeedBackSubmit from "./modals/feedBackSubmit";
 
-export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackSubmit }: any) {
+export default function Headerlogin({IsShopIcon = false}:any) {
     const [open, setOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalOpenFeed, setIsModalOpenFeed] = useState(false);
@@ -23,15 +23,25 @@ export default function Headerlogin({ onOpenModal, onopenFeedack, onopenFeedackS
 
                 {/* Right */}
                 <div className="flex items-center space-x-4 h-full">
-                    <button className="p-2 hover:bg-gray-100 rounded-full">
+                    {IsShopIcon == false ? <button className="p-2 hover:bg-gray-100 rounded-full">
                         <Image
                             src="/dash.svg"
                             alt="Tegore mascot"
-                            width={32}
-                            height={32}
+                            width={40}
+                            height={40}
                             priority
                         />
                     </button>
+                        :
+                        <button className="p-2 hover:bg-gray-100 rounded-full">
+                            <Image
+                                src="/bags.svg"
+                                alt="Tegore mascot"
+                                width={32}
+                                height={32}
+                                priority
+                            />
+                        </button>}
                     <button className="p-2 hover:bg-gray-100 rounded-full">
                         <Image
                             src="/tropi.svg"

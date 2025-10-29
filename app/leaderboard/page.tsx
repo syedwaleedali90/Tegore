@@ -29,10 +29,10 @@ const players: Player[] = [
 export default function Leaderboard() {
     return (
         <main className="min-h-screen bg-white">
-            <Headerlogin />
-            <div className="max-w-6xl mx-auto">
+            <Headerlogin  IsShopIcon={true} />
+            <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col w-full items-center justify-center text-gray-900 p-6">
-                    <div className="flex items-center w-full gap-6 mb-2">
+                    <div className="flex relative items-center w-full gap-6 mb-2">
                         <h1 className="text-5xl font-semibold text-orange-600 mr-4 leading-tight">
                             Welcome to the <br />
                             Champions <br /> League!
@@ -40,9 +40,10 @@ export default function Leaderboard() {
                         <Image
                             src="/steps.svg"
                             alt="Medal"
-                            width={250}
-                            height={250}
+                            width={290}
+                            height={290}
                             priority
+                            className="absolute pl-8 left-0 right-0 m-auto"
                         />
                     </div>
                     <div className="border-b border-gray-500 w-full text-end mb-6 font-extralight  ">
@@ -50,7 +51,7 @@ export default function Leaderboard() {
                     </div>
 
                     {/* Leaderboard */}
-                    <div className="w-full max-w-md space-y-3">
+                    <div className="w-full max-w-lg space-y-3">
                         {players.map((player) => (
                             <div className="flex items-center gap-2" key={player.rank}>
                                 <div className="flex items-center">
@@ -74,7 +75,7 @@ export default function Leaderboard() {
                                         boxShadow: "0 12px 25px rgba(0,0,0,0.2)",
                                     }}
                                     transition={{ type: "spring", stiffness: 250, damping: 20 }}
-                                    className="flex items-center justify-between w-full cursor-pointer rounded-md border border-gray-200 p-4 ml-2"
+                                    className="flex items-center justify-between w-full cursor-pointer rounded-md border border-gray-200 p-2 ml-2"
                                     style={{ backgroundColor: player.bgcolor }}  >
                                     <div className={`${player.rank <= 6 ? 'text-white' : 'text-black'}`}>
                                         <span className="text-lg pr-2 text-xl font-bold">{player.rank}.</span>

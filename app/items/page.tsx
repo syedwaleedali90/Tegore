@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Headerlogin from "@/components/headerlogin";
+import { X } from "lucide-react";
 
 type Item = {
     id: number;
@@ -25,7 +26,7 @@ export default function ItemsPage() {
 
     return (
         <main className="min-h-screen bg-white">
-            <Headerlogin />
+            <Headerlogin IsShopIcon={true} />
             <div className="flex customheightHome">
                 <div
                     className={`flex-1 px-12 py-8 transition-all duration-300 ${selectedItem ? "blur-md" : ""
@@ -45,14 +46,14 @@ export default function ItemsPage() {
                                     <Image
                                         src={item.image}
                                         alt={item.name}
-                                        width={60}
-                                        height={60}
+                                        width={80}
+                                        height={80}
                                         className="object-contain"
                                     />
                                 </div>
 
                                 {/* Item Name */}
-                                <h3 className="font-semibold border-t w-full border-black pt-2  text-gray-800 mb-2">
+                                <h3 className="font-semibold text-left border-t  border-black pt-2 w-[80%] margin-auto text-gray-800 mb-6">
                                     {item.name}
                                 </h3>
 
@@ -86,7 +87,7 @@ export default function ItemsPage() {
                         />
                         <div className="w-[60%] m-auto">
                             <p className="text-xl text-black font-extralight mb-2 border-b border-gray-500">Bunty’s <br /> total gold:</p>
-                            <div className="flex items-center gap-2 text-5xl font-extralight text-black">
+                            <div className="flex items-center gap-2 justify-center text-5xl font-extralight text-black">
                                 <Image
                                     src="/bigdol.svg"
                                     alt="Medal"
@@ -114,13 +115,13 @@ export default function ItemsPage() {
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.8, opacity: 0 }}
-                            className="bg-white border-3 border-black  rounded-xl shadow-lg p-6 text-center z-10 w-[300px]"
+                            className="bg-white border-3 border-black  rounded-lg shadow-lg p-6 text-center z-10 w-[270px]"
                         >
                             <button
                                 onClick={() => setSelectedItem(null)}
-                                className="absolute top-[90px] left-5 text-xl font-bold text-gray-700"
+                                className="absolute top-[90px] left-5 text-2xl font-bold text-gray-700"
                             >
-                                ✕
+                                <X width={32} height={32}/>
                             </button>
                             <div className="flex flex-col items-center mt-6">
                                 <p className="text-black text-xl mb-4 font-semibold">
