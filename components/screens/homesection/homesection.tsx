@@ -88,12 +88,21 @@ const LessonCard = ({
                 style={{ transform: 'rotate(0deg)' }}
                 priority
             />}
-            <div className="overflow-hidden border-4 border-black pt-2 pb-2">
+            {iconposition == "chitright" && <Image
+                src="/bluearrow.svg"
+                alt="Tegore mascot"
+                width={22}
+                height={22}
+                className="absolute  m-auto -left-[13px] top-[30%]"
+                style={{ transform: 'rotate(180deg)' }}
+                priority
+            />}
+            <div className="overflow-hidden border-4 border-black pt-2 pb-2 bg-white">
                 <div className="bg-white px-4 ">
                     {title && <div className=" pt-2 text-md font-semibold text-black mb-1">
                         Lesson: <span className="font-light text-gray-800">{title}</span>
                     </div>}
-                    {time && <div className="text-sm pb-2 text-gray-400 font-light">{time}</div>}
+                    {time && <div className="font-light text-gray-800">{time}</div>}
                 </div>
 
                 {/* Button Section */}
@@ -108,7 +117,7 @@ const LessonCard = ({
     );
 };
 
-export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFeed, openFeedSubmit, onCloseFeedSubmit }: any) {
+export default function HomeSection() {
     const [activeindex, setActiveindex] = useState(1);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -121,7 +130,7 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
 
     return (
         <div className="relative customheightHome">
-            <div className="fixed h-[40%] z-1 bottom-[25%] left-8">
+            <div className="fixed h-[40%] z-1 bottom-[0%] left-8">
                 <div className="relative w-full h-full">
                     <Image
                         src="/towerleft.svg"
@@ -132,7 +141,7 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                     />
                 </div>
             </div>
-            <div className="fixed h-[40%] bottom-[25%] z-1 right-8">
+            <div className="fixed h-[40%] bottom-[0%] z-1 right-8">
                 <div className="relative w-full h-full">
 
                     <Image
@@ -146,7 +155,7 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
             </div>
 
             <div className="w-full h-full">
-                <div className="flex items-center">
+                <div className="flex mt-5 items-center">
                     <div className="bg-blue-400 mt-5 w-[40%] px-4 py-3">
                         <h2 className="text-2xl text-white font-bold">Stage 1: Algebraic Terms</h2>
                     </div>
@@ -154,11 +163,11 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                         <LanguageSelector />
                     </div>
                 </div>
-                <div className="mt-[60px] relative">
+                <div className="mt-[80px] relative">
                     <span className={`w-[30%] h-[4px] inline-flex ${activeindex >= 1 ? "bg-orange-400" : "bg-gray-400"
                         }`}></span>
                     <div className="ml-[30%] relative min-h-[60px]">
-                        <span className="absolute -top-[66px] p-1 ml-8">
+                        <span className="absolute -top-[66px] p-1 ">
                             <div className="flex items-center">
                                 {activeindex == 1 && <CornerBrackets />}
                                 <Image
@@ -188,13 +197,13 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
 
                 <div className="mt-[0px] relative">
                     <div className="ml-[30%]">
-                        <span className={`ml-[80px] w-[4px] h-[175px] inline-flex ${activeindex >= 2 ? "bg-orange-400" : "bg-gray-400"
+                        <span className={`ml-[50px] w-[4px] h-[175px] inline-flex ${activeindex >= 2 ? "bg-orange-400" : "bg-gray-400"
                             }`}></span>
-                        <span className={`w-[11%] h-[4px] inline-flex ${activeindex >= 2 ? "bg-orange-400" : "bg-gray-400"
+                        <span className={`w-[20%] h-[4px] inline-flex ${activeindex >= 2 ? "bg-orange-400" : "bg-gray-400"
                             }`}></span>
                         <div className="ml-[18%] relative min-h-[60px]">
-                            <span className="absolute -top-[66px] p-1 ml-8">
-                                <div className="flex items-center">
+                            <span className="absolute bg-white z-1 -top-[66px] p-1 ">
+                                <div className="flex bg-white  items-center">
                                     {activeindex == 2 && <CornerBrackets />}
                                     <Image
                                         src="/lesson.svg"
@@ -219,9 +228,9 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     }
                                 </div>
                             </span>
-                            <span className={`w-[40%] h-[4px] absolute -top-[12px] left-[160px] inline-flex ${activeindex >= 3 ? "bg-orange-400" : "bg-gray-400"
+                            <span className={`w-[40%] h-[4px] absolute -top-[12px] left-[100px] inline-flex ${activeindex >= 3 ? "bg-orange-400" : "bg-gray-400"
                                 }`}></span>
-                            <span className={` w-[4px] h-[300px] absolute -top-[12px] left-[calc(40%+160px)] inline-flex ${activeindex >= 3 ? "bg-orange-400" : "bg-gray-400"
+                            <span className={` w-[4px] h-[300px] absolute -top-[12px] left-[calc(40%+100px)] inline-flex ${activeindex >= 3 ? "bg-orange-400" : "bg-gray-400"
                                 }`}></span>
                         </div>
                     </div>
@@ -236,10 +245,10 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                             {/* <span className={` w-[4px] h-[200px] absolute -top-[12px] left-[30%] inline-flex ${activeindex >= 3 ? "bg-orange-400" : "bg-gray-400"
                                 }`}></span> */}
                         </div>
-                        <span className={`w-[51%] ml-[158px] h-[4px] inline-flex ${activeindex >= 3 ? "bg-orange-400" : "bg-gray-400"
+                        <span className={`w-[51%] ml-[98px] h-[4px] inline-flex ${activeindex >= 3 ? "bg-orange-400" : "bg-gray-400"
                             }`}></span>
                         <div className="ml-[0px] relative min-h-[60px]">
-                            <span className="absolute -top-[66px] p-1 ml-8">
+                            <span className="absolute bg-white -top-[66px] p-1 ml-8">
                                 <div className="flex items-center">
                                     {activeindex == 3 && <CornerBrackets />}
                                     <Image
@@ -271,21 +280,21 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
 
 
 
-                <div className="mt-[0px] relative">
+                <div className="-mt-[20px] relative">
                     <div className="ml-[calc(30%_-_80px)]">
                         <span className={`w-[4px] ml-[158px] h-[150px] inline-flex ${activeindex >= 4 ? "bg-orange-400" : "bg-gray-400"
                             }`}></span>
-                        <span className={`w-[18%]  h-[4px] inline-flex ${activeindex >= 4 ? "bg-orange-400" : "bg-gray-400"
+                        <span className={`w-[20%]  h-[4px] inline-flex ${activeindex >= 4 ? "bg-orange-400" : "bg-gray-400"
                             }`}></span>
                         <div className="ml-[0px] relative min-h-[60px]">
-                            <span className="absolute -top-[66px] left-[31%] p-1 ml-8 bg-white">
+                            <span className="absolute bg-white -top-[66px] left-[31%] p-1  bg-white">
                                 <div className="flex items-center">
                                     {activeindex == 4 && <CornerBrackets />}
                                     <Image
                                         src="/elec.svg"
                                         alt="Tegore mascot"
-                                        width={90}
-                                        height={90}
+                                        width={100}
+                                        height={100}
                                         priority
                                         className="p-3"
                                         style={{ opacity: activeindex >= 4 ? 1 : 0.5 }}
@@ -295,7 +304,7 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     {activeindex > 4 && <div className="p-2 bg-white z-1">
                                         <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
                                     </div>}
-                                    {activeindex == 4 && <div className="absolute top-0 right-[150px]">
+                                    {activeindex == 4 && <div className="absolute top-0 z-11 right-[150px]">
                                         <LessonCard
                                             title="What is a variable?"
                                             time="8 minutes"
@@ -305,9 +314,9 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     }
                                 </div>
                             </span>
-                            <span className={`w-[15%] h-[4px] absolute -top-[12px] left-[calc(31%+175px)] inline-flex ${activeindex >= 5 ? "bg-orange-400" : "bg-gray-400"
+                            <span className={`w-[15%] h-[4px] absolute -top-[12px] left-[calc(31%+105px)] inline-flex ${activeindex >= 5 ? "bg-orange-400" : "bg-gray-400"
                                 }`}></span>
-                            <span className={` w-[4px] h-[200px] absolute -top-[12px] left-[calc(46%+175px)] inline-flex ${activeindex >= 5 ? "bg-orange-400" : "bg-gray-400"
+                            <span className={` w-[4px] h-[200px] absolute -top-[12px] left-[calc(46%+105px)] inline-flex ${activeindex >= 5 ? "bg-orange-400" : "bg-gray-400"
                                 }`}></span>
                         </div>
                     </div>
@@ -324,7 +333,7 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                         <span className={`w-[18%]  h-[4px] inline-flex ${activeindex >= 4 ? "bg-orange-400" : "bg-gray-400"
                             }`}></span> */}
                         <div className="ml-[0px] relative min-h-[60px]">
-                            <span className="absolute -top-[66px] left-[31%] p-1 ml-8 bg-white">
+                            <span className="absolute -top-[66px] left-[27%] p-1  bg-white">
                                 <div className="flex items-center">
                                     {activeindex == 5 && <CornerBrackets />}
                                     <Image
@@ -342,7 +351,7 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     </div>}
                                     {activeindex == 5 && <div className="absolute top-4 right-[150px]">
                                         <LessonCard
-                                            iconposition= "chit"
+                                            iconposition="chit"
                                             buttonText="Start +12 Gold"
                                         />
                                     </div>
@@ -354,7 +363,7 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                 </div>
 
                 <div className="mt-[0px] relative">
-                    <div className="ml-[calc(49%)]">
+                    <div className="ml-[calc(43%-10px)]">
                         <div className=" ml-[calc(31%+90px)]">
                             <span className={`w-[4px] h-[200px] inline-flex ${activeindex >= 6 ? "bg-orange-400" : "bg-gray-400"
                                 }`}></span>
@@ -404,7 +413,7 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                         <span className={`w-[100px] h-[4px] flex ${activeindex >= 7 ? "bg-orange-400" : "bg-gray-400"
                             }`}></span>
                         <div className="ml-[120px] relative min-h-[60px]">
-                            <span className="absolute -top-[66px] left-[0] z-11 p-1 ml-2 bg-white">
+                            <span className="absolute -top-[66px] left-[0] z-11 p-1 ml-0 bg-white">
                                 <div className="flex items-center">
                                     {activeindex == 7 && <CornerBrackets />}
                                     <Image
@@ -439,14 +448,14 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                         <span className={`w-[100px] h-[4px] inline-flex ${activeindex >= 8 ? "bg-orange-400" : "bg-gray-400"
                             }`}></span>
                         <div className="ml-[120px] relative min-h-[60px]">
-                            <span className="absolute -top-[46px] left-[0] z-11 p-1 ml-2 bg-white">
+                            <span className="absolute -top-[46px] left-[0] z-11 p-1 ml-0 bg-white">
                                 <div className="flex items-center">
                                     {activeindex == 8 && <CornerBrackets />}
                                     <Image
                                         src="/elec.svg"
                                         alt="Tegore mascot"
-                                        width={90}
-                                        height={90}
+                                        width={100}
+                                        height={100}
                                         priority
                                         className="p-3"
                                         style={{ opacity: activeindex >= 8 ? 1 : 0.5 }}
@@ -484,16 +493,15 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                         <span className={`w-[30%] h-[4px] inline-flex ${activeindex >= 9 ? "bg-orange-400" : "bg-gray-400"
                             }`}></span>
                         <div className="ml-[31%] relative min-h-[60px]">
-                            <span className="absolute -top-[66px] left-[0] z-0 p-1 ml-2 bg-white">
+                            <span className="absolute -top-[66px] left-[0] z-0 p-1 ml-0 bg-white">
                                 <div className="flex items-center">
                                     {activeindex == 9 && <CornerBrackets />}
                                     <Image
                                         src="/lesson.svg"
                                         alt="Tegore mascot"
-                                        width={80}
-                                        height={80}
+                                        width={100}
+                                        height={100}
                                         priority
-                                        className="pt-3"
                                         style={{ opacity: activeindex >= 9 ? 1 : 0.5 }}
                                         onClick={activeindex === 9 ? handleClick : undefined}
 
@@ -501,11 +509,10 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                                     {activeindex > 9 && <div className="p-2 bg-white z-1">
                                         <Plus className="bg-gray-300 rounded-lg p-1 font-bold" onClick={() => handlesideBar()} strokeWidth={3} />
                                     </div>}
-                                    {activeindex == 9 && <div className="absolute top-0 right-[150px]">
+                                    {activeindex == 9 && <div className="absolute top-4 left-[130px]">
                                         <LessonCard
-                                            title="What is a variable?"
-                                            time="8 minutes"
-                                            buttonText="Start +12 Gold"
+                                            buttonText="Fast Forward ?"
+                                            iconposition="chitright"
                                         />
                                     </div>
                                     }
@@ -526,14 +533,14 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                         <span className={`w-[50%] h-[4px] inline-flex ${activeindex >= 10 ? "bg-orange-400" : "bg-gray-400"
                             }`}></span>
                         <div className="ml-[51%] relative min-h-[60px]">
-                            <span className="absolute -top-[46px] left-[0] z-0 p-1 ml-2 bg-white">
+                            <span className="absolute -top-[46px] left-[0] z-0 p-1 ml-0 bg-white">
                                 <div className="flex items-center">
                                     {activeindex == 10 && <CornerBrackets />}
                                     <Image
-                                        src="/lesson.svg"
+                                        src="/arrow.svg"
                                         alt="Tegore mascot"
-                                        width={80}
-                                        height={80}
+                                        width={100}
+                                        height={100}
                                         priority
                                         // className="pt-3"
                                         style={{ opacity: activeindex >= 10 ? 1 : 0.5 }}
@@ -565,16 +572,16 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                         <span className={`w-[60%] h-[4px] inline-flex ${activeindex >= 12 ? "bg-orange-400" : "bg-gray-400"
                             }`}></span>
                         <div className="ml-[61%] relative min-h-[60px]">
-                            <span className="absolute -top-[46px] left-[0] z-0 p-1 ml-2 bg-white">
+                            <span className="absolute -top-[46px] left-[0] z-0 p-1 ml-0 bg-white">
                                 <div className="flex items-center">
                                     {activeindex == 11 && <CornerBrackets />}
                                     <Image
-                                        src="/lesson.svg"
+                                        src="/elec.svg"
                                         alt="Tegore mascot"
-                                        width={80}
-                                        height={80}
+                                        width={100}
+                                        height={100}
                                         priority
-                                        // className="pt-3"
+                                        className="p-3"
                                         style={{ opacity: activeindex >= 11 ? 1 : 0.5 }}
                                         onClick={activeindex === 11 ? handleClick : undefined}
 
@@ -598,10 +605,6 @@ export default function HomeSection({ openConf, onCloseConf, openFeed, onCloseFe
                 </div>
             </div>
 
-
-            <ConfirmationModal open={openConf} onClose={onCloseConf} />
-            <FeedModal open={openFeed} onClose={onCloseFeed} />
-            <FeedBackSubmit open={openFeedSubmit} onClose={onCloseFeedSubmit} />
             <LessonSidebar
                 isOpen={isSidebarOpen}
                 onClose={() => setIsSidebarOpen(false)}

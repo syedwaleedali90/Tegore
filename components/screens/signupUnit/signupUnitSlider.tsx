@@ -173,6 +173,32 @@ export default function SignupUnitSlider() {
     setCurrentIndex((prev) => (prev === units.length - 1 ? 0 : prev + 1));
   };
 
+  // 🧠 Swipe handling
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeDistance = touchStartX - touchEndX;
+    const swipeThreshold = 50; // Minimum distance to trigger swipe
+
+    if (swipeDistance > swipeThreshold) {
+      // Swiped left → next slide
+      goToNext();
+    } else if (swipeDistance < -swipeThreshold) {
+      // Swiped right → previous slide
+      goToPrevious();
+    }
+  };
+
+
   return (
     <div className="w-full max-w-md mx-auto py-2">
       <div className="relative">
@@ -188,7 +214,10 @@ export default function SignupUnitSlider() {
         </div>
 
         {/* Fade Slider */}
-        <div className="relative pt-0 md:pt-16 overflow-hidden">
+        <div className="relative pt-0 md:pt-16 overflow-hidden"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}>
           <AnimatePresence mode="wait">
             <motion.div
               key={units[currentIndex].id}
