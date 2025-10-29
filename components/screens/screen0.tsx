@@ -3,6 +3,29 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 
+// Client-side session cookie management
+function setCookie(name: string, value: string, days: number) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = `${name}=${value}; expires=${expires}; path=/; SameSite=Lax`;
+}
+
+function getCookie(name: string): string {
+    return document.cookie.split('; ').reduce((r, v) => {
+        const parts = v.split('=');
+        return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+    }, '');
+}
+
+function getOrCreateSessionId(): string {
+    let sessionId = getCookie('session_id');
+    if (!sessionId) {
+        sessionId = crypto.randomUUID();
+        // Set cookie that will be sent to api.tegore.ai
+        document.cookie = `session_id=${sessionId}; path=/; max-age=31536000; SameSite=Lax`;
+    }
+    return sessionId;
+}
+
 export default function Screen0() {
     const [isClicked, setIsClicked] = useState(false);
     const [userInput, setUserInput] = useState("");
@@ -11,9 +34,26 @@ export default function Screen0() {
     const [noYesResponse, setNoYesResponse] = useState(false);
     const [firstClick, setFirstClick] = useState(false);
     const [isSpacePressed, setIsSpacePressed] = useState(false);
+    const [sessionId, setSessionId] = useState<string>("");
+    const [userName, setUserName] = useState("");
+    const [greetingName, setGreetingName] = useState(false);
+    const [conversationMode, setConversationMode] = useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+    const [aiResponse, setAiResponse] = useState("");
+    const [isProcessing, setIsProcessing] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
+    const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+    const audioChunksRef = useRef<Blob[]>([]);
 
-    const fullText = saidYes
+    const fullText = isProcessing
+        ? "Let me think about that..."
+        : aiResponse
+        ? aiResponse
+        : conversationMode
+        ? "Hold the spacebar to talk to me!"
+        : greetingName
+        ? `Hi ${userName} - I'd love to tell you more about myself. Before that, can you press the space bar for me?`
+        : saidYes
         ? "Hello! Glad to meet you, what's your name?"
         : noYesResponse
         ? "Oh, you didn't type yes. You must like thinking outside of the box! What's your name by the way?"
@@ -25,19 +65,119 @@ export default function Screen0() {
             return;
         }
         if (e.key === "Enter" && userInput.trim()) {
-            const input = userInput.toLowerCase().trim();
-            if (input === "yes") {
-                setSaidYes(true);
-                setTypedText("");
-                const audio = new Audio('/yes-response.mp3');
-                audio.play().catch(error => console.log('Audio play failed:', error));
-            } else {
-                setNoYesResponse(true);
-                setTypedText("");
-                const audio = new Audio('/no-yes-response.mp3');
-                audio.play().catch(error => console.log('Audio play failed:', error));
+            const input = userInput.trim();
+
+            // First interaction: yes/no detection
+            if (!saidYes && !noYesResponse) {
+                const lowerInput = input.toLowerCase();
+                if (lowerInput === "yes") {
+                    setSaidYes(true);
+                    setTypedText("");
+                    const audio = new Audio('/yes-response.mp3');
+                    audio.play().catch(error => console.log('Audio play failed:', error));
+                } else {
+                    setNoYesResponse(true);
+                    setTypedText("");
+                    const audio = new Audio('/no-yes-response.mp3');
+                    audio.play().catch(error => console.log('Audio play failed:', error));
+                }
+                setUserInput("");
             }
-            setUserInput("");
+            // Second interaction: name entry
+            else if (saidYes || noYesResponse) {
+                setUserName(input);
+                setGreetingName(true);
+                setTypedText("");
+                setUserInput("");
+
+                // Call TTS endpoint (session_id sent as cookie automatically)
+                const playGreeting = async () => {
+                    try {
+                        const params = new URLSearchParams({ name: input });
+                        const response = await fetch(`https://api.tegore.ai/api/tts/greeting?${params.toString()}`, {
+                            credentials: 'include'  // Send cookies with request
+                        });
+
+                        if (!response.ok) {
+                            console.log('TTS greeting failed:', response.status);
+                            // Still enable conversation mode even if greeting fails
+                            setTimeout(() => {
+                                setConversationMode(true);
+                                setTypedText("");
+                            }, 2000);
+                            return;
+                        }
+
+                        const audioBlob = await response.blob();
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        const audio = new Audio(audioUrl);
+
+                        audio.onended = () => {
+                            setConversationMode(true);
+                            setTypedText("");
+                        };
+
+                        await audio.play();
+                    } catch (error) {
+                        console.log('TTS greeting failed:', error);
+                        // Enable conversation mode after delay if audio fails
+                        setTimeout(() => {
+                            setConversationMode(true);
+                            setTypedText("");
+                        }, 2000);
+                    }
+                };
+
+                playGreeting();
+            }
+        }
+    };
+
+    const sendToConversation = async (audioBlob: Blob) => {
+        setIsProcessing(true);
+        setTypedText("");
+
+        const formData = new FormData();
+        formData.append('audio', audioBlob, 'recording.webm');
+
+        try {
+            const response = await fetch('https://api.tegore.ai/api/conversation/respond', {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'  // Send cookies with request
+            });
+
+            if (response.status === 429) {
+                setAiResponse('⚠️ Rate limit exceeded. Please wait a moment and try again.');
+                setIsProcessing(false);
+                return;
+            }
+
+            if (!response.ok) {
+                throw new Error('Conversation failed');
+            }
+
+            // Get AI text from header
+            const aiText = response.headers.get('X-AI-Response') || 'Sorry, I didn\'t catch that.';
+            setAiResponse(aiText);
+            setIsProcessing(false);
+
+            // Play AI audio
+            const aiAudioBlob = await response.blob();
+            const aiAudioUrl = URL.createObjectURL(aiAudioBlob);
+            const aiAudio = new Audio(aiAudioUrl);
+            aiAudio.play().catch(error => console.log('AI audio play failed:', error));
+
+            // Reset for next interaction
+            aiAudio.onended = () => {
+                setAiResponse("");
+                setTypedText("");
+            };
+
+        } catch (error) {
+            console.error('Conversation error:', error);
+            setAiResponse('❌ Something went wrong. Please try again.');
+            setIsProcessing(false);
         }
     };
 
@@ -78,16 +218,79 @@ export default function Screen0() {
 
     useEffect(() => {
         if (isClicked && typedText.length < fullText.length) {
-            const delay = (typedText.length === 0 && !noYesResponse && !saidYes) ? 500 : 50;
+            const delay = (typedText.length === 0 && !noYesResponse && !saidYes && !greetingName) ? 500 : 50;
             const timeout = setTimeout(() => {
                 setTypedText(fullText.slice(0, typedText.length + 1));
             }, delay);
             return () => clearTimeout(timeout);
         }
-    }, [isClicked, typedText, fullText, noYesResponse, saidYes]);
+    }, [isClicked, typedText, fullText, noYesResponse, saidYes, greetingName]);
 
     useEffect(() => {
-        if (noYesResponse) {
+        // Initialize microphone when conversation mode is enabled
+        if (conversationMode) {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    const options = MediaRecorder.isTypeSupported('audio/webm')
+                        ? { mimeType: 'audio/webm' }
+                        : {};
+                    const recorder = new MediaRecorder(stream, options);
+
+                    recorder.ondataavailable = (e) => {
+                        if (e.data.size > 0) {
+                            audioChunksRef.current.push(e.data);
+                        }
+                    };
+
+                    recorder.onstop = async () => {
+                        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+                        audioChunksRef.current = [];
+                        await sendToConversation(audioBlob);
+                    };
+
+                    mediaRecorderRef.current = recorder;
+                })
+                .catch(error => console.log('Microphone access failed:', error));
+
+            return () => {
+                if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+                    mediaRecorderRef.current.stop();
+                    mediaRecorderRef.current.stream.getTracks().forEach(track => track.stop());
+                }
+            };
+        }
+    }, [conversationMode]);
+
+    useEffect(() => {
+        if (conversationMode) {
+            const handleKeyDown = (e: KeyboardEvent) => {
+                if (e.code === 'Space' && !isSpacePressed && !isRecording && !isProcessing) {
+                    e.preventDefault();
+                    setIsSpacePressed(true);
+                    setIsRecording(true);
+                    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'inactive') {
+                        audioChunksRef.current = [];
+                        mediaRecorderRef.current.start();
+                    }
+                }
+            };
+            const handleKeyUp = (e: KeyboardEvent) => {
+                if (e.code === 'Space' && isSpacePressed) {
+                    e.preventDefault();
+                    setIsSpacePressed(false);
+                    setIsRecording(false);
+                    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+                        mediaRecorderRef.current.stop();
+                    }
+                }
+            };
+            window.addEventListener('keydown', handleKeyDown);
+            window.addEventListener('keyup', handleKeyUp);
+            return () => {
+                window.removeEventListener('keydown', handleKeyDown);
+                window.removeEventListener('keyup', handleKeyUp);
+            };
+        } else if (noYesResponse) {
             const handleKeyDown = (e: KeyboardEvent) => {
                 if (e.code === 'Space' && !isSpacePressed) {
                     setIsSpacePressed(true);
@@ -105,7 +308,12 @@ export default function Screen0() {
                 window.removeEventListener('keyup', handleKeyUp);
             };
         }
-    }, [noYesResponse, isSpacePressed]);
+    }, [conversationMode, noYesResponse, isSpacePressed, isRecording, isProcessing]);
+
+    useEffect(() => {
+        // Initialize session on mount
+        setSessionId(getOrCreateSessionId());
+    }, []);
     // const { RiveComponent } = useRive({
     //     src: "/bear_hi.riv",
     //     autoplay: true,
@@ -169,7 +377,7 @@ export default function Screen0() {
                             </>
                         }
                     </motion.div>
-                    {isClicked && (
+                    {isClicked && !conversationMode && (
                         <motion.div
                             className="mt-4 flex items-center justify-center w-[400px]"
                             initial={{ opacity: 0 }}
@@ -189,13 +397,29 @@ export default function Screen0() {
                             />
                         </motion.div>
                     )}
-                    {noYesResponse && (
+                    {(noYesResponse || conversationMode) && (
                         <motion.div
-                            className="mt-6 flex justify-center"
+                            className="mt-6 flex flex-col items-center gap-3"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3, delay: 0.2 }}
                         >
+                            {isRecording && (
+                                <motion.div
+                                    className="text-red-500 font-semibold text-sm flex items-center gap-2"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    <motion.span
+                                        animate={{ opacity: [1, 0.3, 1] }}
+                                        transition={{ duration: 1.5, repeat: Infinity }}
+                                    >
+                                        🔴
+                                    </motion.span>
+                                    Recording...
+                                </motion.div>
+                            )}
                             <motion.div
                                 animate={{ y: isSpacePressed ? 4 : 0 }}
                                 transition={{ duration: 0.1, ease: "easeOut" }}
