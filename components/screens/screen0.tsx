@@ -112,12 +112,14 @@ export default function Screen0() {
                         const audioUrl = URL.createObjectURL(audioBlob);
                         const audio = new Audio(audioUrl);
 
+                        await audio.play();
+
+                        // Enable conversation mode as soon as audio starts
+                        setConversationMode(true);
+
                         audio.onended = () => {
-                            setConversationMode(true);
                             setTypedText("");
                         };
-
-                        await audio.play();
                     } catch (error) {
                         console.log('TTS greeting failed:', error);
                         // Enable conversation mode after delay if audio fails
@@ -264,23 +266,27 @@ export default function Screen0() {
     useEffect(() => {
         if (conversationMode) {
             const handleKeyDown = (e: KeyboardEvent) => {
-                if (e.code === 'Space' && !isSpacePressed && !isRecording && !isProcessing) {
-                    e.preventDefault();
-                    setIsSpacePressed(true);
-                    setIsRecording(true);
-                    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'inactive') {
-                        audioChunksRef.current = [];
-                        mediaRecorderRef.current.start();
+                if (e.code === 'Space') {
+                    e.preventDefault(); // Always prevent scroll in conversation mode
+                    if (!isSpacePressed && !isRecording && !isProcessing) {
+                        setIsSpacePressed(true);
+                        setIsRecording(true);
+                        if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'inactive') {
+                            audioChunksRef.current = [];
+                            mediaRecorderRef.current.start();
+                        }
                     }
                 }
             };
             const handleKeyUp = (e: KeyboardEvent) => {
-                if (e.code === 'Space' && isSpacePressed) {
-                    e.preventDefault();
-                    setIsSpacePressed(false);
-                    setIsRecording(false);
-                    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
-                        mediaRecorderRef.current.stop();
+                if (e.code === 'Space') {
+                    e.preventDefault(); // Always prevent scroll in conversation mode
+                    if (isSpacePressed) {
+                        setIsSpacePressed(false);
+                        setIsRecording(false);
+                        if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+                            mediaRecorderRef.current.stop();
+                        }
                     }
                 }
             };
@@ -292,12 +298,16 @@ export default function Screen0() {
             };
         } else if (noYesResponse) {
             const handleKeyDown = (e: KeyboardEvent) => {
-                if (e.code === 'Space' && !isSpacePressed) {
-                    setIsSpacePressed(true);
+                if (e.code === 'Space') {
+                    e.preventDefault(); // Prevent scroll
+                    if (!isSpacePressed) {
+                        setIsSpacePressed(true);
+                    }
                 }
             };
             const handleKeyUp = (e: KeyboardEvent) => {
                 if (e.code === 'Space') {
+                    e.preventDefault(); // Prevent scroll
                     setIsSpacePressed(false);
                 }
             };
@@ -397,69 +407,72 @@ export default function Screen0() {
                             />
                         </motion.div>
                     )}
-                    {(noYesResponse || conversationMode) && (
-                        <motion.div
-                            className="mt-6 flex flex-col items-center gap-3"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3, delay: 0.2 }}
-                        >
-                            {isRecording && (
-                                <motion.div
-                                    className="text-red-500 font-semibold text-sm flex items-center gap-2"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    <motion.span
-                                        animate={{ opacity: [1, 0.3, 1] }}
-                                        transition={{ duration: 1.5, repeat: Infinity }}
-                                    >
-                                        🔴
-                                    </motion.span>
-                                    Recording...
-                                </motion.div>
-                            )}
-                            <motion.div
-                                animate={{ y: isSpacePressed ? 4 : 0 }}
-                                transition={{ duration: 0.1, ease: "easeOut" }}
-                            >
-                                <Image
-                                    src={isSpacePressed ? "/spacebar-pressed.svg" : "/spacebar-unpressed.svg"}
-                                    alt="Spacebar"
-                                    width={271}
-                                    height={isSpacePressed ? 56 : 61}
-                                    className="w-[200px] sm:w-[250px] md:w-[271px]"
-                                />
-                            </motion.div>
-                        </motion.div>
-                    )}
                 </div>
             </div>
 
             <motion.div
-                className=" flex-1 flex flex-col items-center md:items-start md:ml-8 gap-4 sm:gap-6 md:gap-8"
+                className=" flex-1 flex flex-col items-center md:items-start md:ml-8 justify-between"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
             >
-                <div className="flex items-center gap-2 sm:mt-2 md:mt-0 md:self-start">
-                    <span className="text-sm text-gray-700 flex-inline items-center flex rounded-lg px-5 py-2">Backed by <span className="w-4 items-center flex justify-center mx-1 h-4 pt-1  bg-orange-600 text-white" style={{fontSize:'12px'}}>Y </span> Combinator</span>
-                </div>
+                {!noYesResponse && !conversationMode ? (
+                    <div className="flex flex-col gap-4 sm:gap-6 md:gap-8">
+                        <div className="flex items-center gap-2 sm:mt-2 md:mt-0 md:self-start">
+                            <span className="text-sm text-gray-700 flex-inline items-center flex rounded-lg px-5 py-2">Backed by <span className="w-4 items-center flex justify-center mx-1 h-4 pt-1  bg-orange-600 text-white" style={{fontSize:'12px'}}>Y </span> Combinator</span>
+                        </div>
 
-                <h2
-                    className="
-    text-5xl sm:text-5xl md:text-7xl lg:text-8xl
-    font-bold
-    leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05]
-    text-gray-900
-    text-center md:text-left
-  "
-                >
-                    Meet your <br className="hidden md:block" /> new math <br /> teacher.
-                </h2>
+                        <h2
+                            className="
+            text-5xl sm:text-5xl md:text-7xl lg:text-8xl
+            font-bold
+            leading-snug sm:leading-tight md:leading-[1.1] lg:leading-[1.05]
+            text-gray-900
+            text-center md:text-left
+          "
+                        >
+                            Meet your <br className="hidden md:block" /> new math <br /> teacher.
+                        </h2>
+                    </div>
+                ) : (
+                    <motion.div
+                        className="flex flex-col items-center justify-center gap-6 w-full pt-20 md:pt-32 pb-16 md:pb-24"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        {isRecording && (
+                            <motion.div
+                                className="text-red-500 font-semibold text-lg flex items-center gap-2"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                <motion.span
+                                    animate={{ opacity: [1, 0.3, 1] }}
+                                    transition={{ duration: 1.5, repeat: Infinity }}
+                                >
+                                    🔴
+                                </motion.span>
+                                Recording...
+                            </motion.div>
+                        )}
+                        <motion.div
+                            animate={{ y: isSpacePressed ? 4 : 0 }}
+                            transition={{ duration: 0.1, ease: "easeOut" }}
+                        >
+                            <Image
+                                src={isSpacePressed ? "/spacebar-pressed.svg" : "/spacebar-unpressed.svg"}
+                                alt="Spacebar"
+                                width={271}
+                                height={isSpacePressed ? 56 : 61}
+                                className="w-[300px] sm:w-[350px] md:w-[400px]"
+                            />
+                        </motion.div>
+                    </motion.div>
+                )}
 
-                <button className="bg-[#0099FF] text-white
+                <button className={`bg-[#0099FF] text-white
     px-6 py-2 text-base font-semibold
     sm:px-8 sm:py-2 sm:text-lg
     md:px-10 md:py-2.5 md:text-xl
@@ -467,7 +480,7 @@ export default function Screen0() {
     shadow-[4px_4px_0_0_#0066CC]
     hover:shadow-[2px_2px_0_0_#0066CC] hover:translate-x-[2px] hover:translate-y-[2px]
     active:shadow-none active:translate-x-[4px] active:translate-y-[4px]
-    transition-all duration-150">
+    transition-all duration-150 ${(noYesResponse || conversationMode) ? 'mt-auto' : 'mt-4 sm:mt-6 md:mt-8'}`}>
                     Start Learning
                 </button>
             </motion.div>
