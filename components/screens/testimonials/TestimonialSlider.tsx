@@ -37,7 +37,17 @@ const testimonials: Testimonial[] = [
 export default function TestimonialSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToSlide = (index: number) => setCurrentIndex(index);
+  const goToSlide = (index: number) => {
+    const total = testimonials.length;
+    if (index < 0) {
+      setCurrentIndex(total - 1); // Go to last slide
+    } else if (index >= total) {
+      setCurrentIndex(0); // Go to first slide
+    } else {
+      setCurrentIndex(index);
+    }
+  };
+
 
   // 🔥 Move per-slide based on how many total slides exist
   // const movePercent = 100 / testimonials.length;
